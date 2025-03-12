@@ -10,10 +10,12 @@ using namespace std;
 
 class Data {
 public:
-    Data(int y, int m, int d): year(y), month(m), day(d) {};
+    Data(int d, int m, int y): day(d), month(m), year(y) {};
     Data()= default;
 
     void setCurrentDate();  // Imposta la data attuale
+
+    static int daysInMonth(int month, int year);
 
     int getDay() const {
         return day;

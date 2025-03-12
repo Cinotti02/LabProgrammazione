@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(LabProgrammazione main.cpp
         Data.cpp
-        Data.h)
+        Data.h
+        Task.cpp
+        Task.h)
