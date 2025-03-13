@@ -15,6 +15,8 @@ public:
 
     void setCurrentDate();  // Imposta la data attuale
 
+    static Data getCurrentDate(); // Ritorna la data attuale
+
     static int daysInMonth(int month, int year);
 
     string toString() const;

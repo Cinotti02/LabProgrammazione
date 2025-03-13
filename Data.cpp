@@ -15,6 +15,16 @@ void Data::setCurrentDate() {
     year = localTime.tm_year + 1900;
 }
 
+Data Data::getCurrentDate() {
+    auto now = chrono::system_clock::now();
+    time_t nowTime = chrono::system_clock::to_time_t(now);
+    struct tm localTime;
+    localtime_s(&localTime, &nowTime);
+
+    return Data(localTime.tm_mday, localTime.tm_mon + 1, localTime.tm_year + 1900);
+}
+
+
 int Data::daysInMonth(int month, int year) {
     if (month==4||month==6||month==9||month==11)
         return 30;
