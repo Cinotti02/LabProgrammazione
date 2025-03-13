@@ -17,6 +17,10 @@ public:
 
     static int daysInMonth(int month, int year);
 
+    string toString() const;
+
+    Data fromString(const string &s);
+
     int getDay() const {
         return day;
     }
@@ -33,8 +37,6 @@ private:
     int day;
     int month;
     int year;
-
-
 };
 
 

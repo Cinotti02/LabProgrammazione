@@ -23,3 +23,20 @@ int Data::daysInMonth(int month, int year) {
     else
         return 31;
 }
+
+string Data::toString() const {
+    ostringstream oss;
+    oss << setw(2) <<  setfill('0') << day << "/"
+        << setw(2) << setfill('0') << month << "/"
+        << setw(2) << year;
+    return oss.str();
+}
+
+Data Data::fromString(const string &s) {
+    int d, m, y;
+    char sep;
+    stringstream ss(s);
+    ss >> d >> sep >> m >> sep >> y;
+    return Data(d, m, y);
+}
+
