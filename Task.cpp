@@ -31,4 +31,4 @@ Task::Task() {
     }
     name = n;
     date = Data(d, m, y);
-}
+} //TODO add controll "cin not string"

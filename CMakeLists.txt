@@ -7,4 +7,6 @@ add_executable(LabProgrammazione main.cpp
         Data.cpp
         Data.h
         Task.cpp
-        Task.h)
+        Task.h
+        Calendar.cpp
+        Calendar.h)

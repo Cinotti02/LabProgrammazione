@@ -10,7 +10,7 @@ using namespace std;
 
 class Task {
 public:
-    Task();    //TODO da migliorare gli spazi tra le righe nel terminale
+    Task();
     Task(string n, Data d): name(n), date(d) {};
     Task(string n, Data d, Data c): name(n), date(d), completionDate(c) {};
 
