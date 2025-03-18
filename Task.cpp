@@ -11,7 +11,7 @@ Task::Task() {
     int a = 0;
     while (y < 2025 || (d < 1 || d > Data::daysInMonth(m, y)) || m < 1 || m > 12) {
         switch (a) {
-            case 0:
+            case 0:                                            //TODO fix problem of insert string
                 cout << "insert date " << endl;
 
                 cout << "day: "<< flush;
