@@ -32,3 +32,19 @@ Task::Task() {
     name = n;
     date = Data(d, m, y);
 } //TODO add controll "cin not string"
+
+Task Task::fromJson(const json &json) {
+    string name = json["nome"];
+    Data data = Data::fromString(json["data"]);
+    Data dataCompletamento = Data::fromString(json["dataCompletamento"]);
+
+    return Task(name, data, dataCompletamento);
+}
+
+json Task::toJason() {
+    json obj;
+    obj["nome"] = name;
+    obj["data"] = date.toString();
+    obj["dataCompletamento"] = completionDate.toString();
+    return obj;
+}

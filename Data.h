@@ -21,7 +21,7 @@ public:
 
     string toString() const;
 
-    Data fromString(const string &s);
+    static Data fromString(const string &s);
 
     int getDay() const {
         return day;

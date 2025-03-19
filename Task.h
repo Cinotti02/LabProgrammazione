@@ -6,7 +6,9 @@
 #define TASK_H
 #include <iostream>
 #include "Data.h"
+#include "nlohmann/json.hpp"
 using namespace std;
+using namespace nlohmann;
 
 class Task {
 public:
@@ -17,6 +19,10 @@ public:
     void taskCompleted() {
         completionDate = Data::getCurrentDate();
     }
+
+    static Task fromJson(const json &json);
+
+    json toJason();
 
     string getName() const{
         return name;
