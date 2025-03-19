@@ -14,4 +14,6 @@ add_executable(LabProgrammazione main.cpp
             Calendar.h
             nlohmann/json.hpp
         Utility.cpp
-        Utility.h)
+        Utility.h
+        Interface.cpp
+        Interface.h)
