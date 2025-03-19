@@ -24,16 +24,6 @@ Data Data::getCurrentDate() {
     return Data(localTime.tm_mday, localTime.tm_mon + 1, localTime.tm_year + 1900);
 }
 
-
-int Data::daysInMonth(int month, int year) {
-    if (month==4||month==6||month==9||month==11)
-        return 30;
-    else if (month==2)
-        return (year%4==0 && (year%100!=0 || year%400==0)) ? 29 : 28;
-    else
-        return 31;
-}
-
 string Data::toString() const {
     ostringstream oss;
     oss << setw(2) <<  setfill('0') << day << "/"

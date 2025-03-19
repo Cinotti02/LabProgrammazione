@@ -17,8 +17,6 @@ public:
 
     static Data getCurrentDate(); // Ritorna la data attuale
 
-    static int daysInMonth(int month, int year);  //TODO move method in Calendar
-
     string toString() const;
 
     static Data fromString(const string &s);
