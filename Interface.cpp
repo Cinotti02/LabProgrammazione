@@ -169,7 +169,7 @@ void Interface::setTaskCompleted() {
                     it->taskCompleted();
                     completed.push_back(*it);
                     tasks.erase(it);
-                    cout << SPACEM "Activity completed at: " << completed.back().getCompletionDate() << endl;
+                    cout << SPACEM "Activity completed at: " << completed.back().getCompletionDate().toString() << endl;
                     return;
                 }
             }
