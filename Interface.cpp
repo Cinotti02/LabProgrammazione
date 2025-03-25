@@ -82,3 +82,23 @@ void Interface::printCalendar(const int year) {
     }
 }
 
+void Interface::todayTasks() {
+    Data d = Data::getCurrentDate();
+    cout << endl;
+    cout << SPACEM "Today is " << d.toString() << RESET << endl;
+    cout << endl;
+    int i = 1;
+    for (auto & it : tasks) {
+        if (it.getDate().toString() == d.toString()) {
+            if (i == 1)
+                cout << SPACE "activities to do today:" RESET << endl;
+            cout << SPACEM << i << ". " RESET << it.getName() << endl;
+            i++;
+        }
+    }
+    if (i == 1)
+        cout << SPACE "no activities to do today" RESET << endl;
+    cout << endl;
+}
+
+
