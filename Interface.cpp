@@ -180,3 +180,16 @@ void Interface::setTaskCompleted() {
     }
 }
 
+void Interface::showCompletedTasks() {
+    if (completed.begin() == completed.end()) {
+        cout << SPACEM "you have no completed activities" RESET << endl;
+    }
+    else {
+        cout << SPACEM "           completed activities:" RESET << endl;
+        int i = 1;
+        for (auto & it : completed) {
+            cout << SPACEM << i << ". " RESET << it.getName()<< " " << it.getDate().toString()<< " " << it.getCompletionDate().toString() << endl;
+            i++;
+        }
+    }
+}
