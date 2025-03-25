@@ -193,3 +193,33 @@ void Interface::showCompletedTasks() {
         }
     }
 }
+
+void Interface::removeTask() {
+    bool a = true;
+    if (tasks.empty()) {
+        cout << SPACE "No activities in the list!";
+    }
+    else {
+        while (a) {
+            int i = 1;
+            cout << SPACE "Activities present in the list:" << endl;
+            for (auto & it : tasks) {
+                cout << SPACE << i << ". " << it.getName()<< " " << endl;
+                i++;
+            }
+            cout << SPACE "Enter the name of the activity to be removed: ";
+            string name;
+            cin >> name;
+            for (auto it = tasks.begin(); it != tasks.end(); ++it) {
+                if (it->getName() == name) {
+                    cout << SPACE "activity removed successfully: " << tasks.front().getName() << endl;
+                    tasks.erase(it);
+                    return;
+                }
+            }
+            cout << SPACE RED"!!! activity name incorrect or not present in the list !!!" RESET << endl;
+            cout << endl;
+            reinsertName(name, a);
+        }
+    }
+}
