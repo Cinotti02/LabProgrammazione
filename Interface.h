@@ -32,9 +32,12 @@ public:
 
     void removeTask();
 
+    void reinsertName(string nome, bool &a);
+
     int controlcin(int &scelta);
 
     int controlCinData(int &d, int &m, int &y);
+
 
 
 

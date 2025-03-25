@@ -146,3 +146,37 @@ void Interface::addTask() {
     cout << SPACEM "added " << task.getName() <<" to your list successfully" << RESET << endl;
 }
 
+void Interface::setTaskCompleted() {
+    if (tasks.empty()) {
+        cout << SPACE "No activities to complete!";
+    }
+    else{
+        bool a = true;
+        while (a) {
+            int i = 1;
+            cout << SPACEM "Activities present in the list:" RESET << endl;
+            for (auto & it : tasks) {
+                cout << SPACEM << i << ". " RESET << it.getName()<< " " << endl;
+                i++;
+            }
+            cout << SPACEM "Enter the name of the completed activity: ";
+            string name;
+            getline(cin >> ws, name);
+
+            for (auto it = tasks.begin(); it != tasks.end(); ++it) {
+                if (it->getName() == name) {
+                    cout << SPACEM "Complete the activity: " << it->getName() << endl;
+                    it->taskCompleted();
+                    completed.push_back(*it);
+                    tasks.erase(it);
+                    cout << SPACEM "Activity completed at: " << completed.back().getCompletionDate() << endl;
+                    return;
+                }
+            }
+            cout << SPACEM RED"!!! activity name incorrect or not present in the list !!!" RESET << endl;
+            cout << endl;
+            reinsertName(name, a);
+        }
+    }
+}
+
