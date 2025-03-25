@@ -243,12 +243,44 @@ int Interface::controlcin(int &scelta) {
     while (true) {
         cout << SPACEM "choice: " RESET ;cin >> scelta;
         if (cin.fail()) {
-            cout <<SPACE RED " !!! Error: Enter a valid number !!! " RESET << endl;
-            cin.clear();                                      // Reset error state
-            cin.ignore(1000, '\n');                   // Clear the buffer until a new input
-            cout << endl;
+            cinFile();
             continue;
         }
         break;
     }
+}
+
+int Interface::controlCinData(int &d, int &m, int &y) {
+    while (true) {
+        cout << SPACEM "- insert date " RESET << endl;
+        cout << SPACE "day: "; cin >> d;
+        if (cin.fail()) {
+            cinFile();
+            continue;                                                                         // Return to the beginning of the loop
+        }
+        cout << SPACE "month: "; cin >> m;
+        if (cin.fail()) {
+            cinFile();
+            continue;                                                                         // Return to the beginning of the loop
+        }
+        cout << SPACE "year: "; cin >> y;
+        if (cin.fail()) {
+            cinFile();
+            continue;
+        }
+        if (y < 2025 || d < 1 || d > daysInMonth(m, y) || m < 1 || m > 12) {
+            cout << SPACE RED " !!! Error: Enter a valid date !!! "   <<RESET;
+            cout << endl;
+            continue;
+        }
+        break;
+
+    }
+}
+
+void Interface::cinFile() {
+    cout << SPACE RED " !!! Error: Enter a valid number !!! " RESET << endl;
+    cin.clear();                                      // Reset error state
+    cin.ignore(1000, '\n');                   // Clear the buffer until a new input
+    cout << endl;
 }

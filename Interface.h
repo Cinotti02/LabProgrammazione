@@ -38,11 +38,7 @@ public:
 
     int controlCinData(int &d, int &m, int &y);
 
-
-
-
-
-
+    void cinFile();
 
 private:
     list<Task> tasks;
