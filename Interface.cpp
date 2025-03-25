@@ -223,3 +223,18 @@ void Interface::removeTask() {
         }
     }
 }
+
+void Interface::reinsertName(string nome, bool &a) {
+    cout << SPACE "do you want to enter a different name? Y/N" << endl;
+    while (true) {
+        cout << SPACE "choice:";cin >> nome;
+        if (nome == "N" || nome == "n" || nome == "no" || nome == "No") {
+            a = false;
+            return;
+        }
+        if (nome == "Y" || nome == "y" || nome == "yes" || nome == "Yes")
+            return;
+        cout <<SPACE RED"        !!! invalid choice !!!" << endl;
+        cout << endl;
+    }
+}
