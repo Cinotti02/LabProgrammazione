@@ -138,3 +138,11 @@ void Interface::searchByDate() {
     }
 }
 
+void Interface::addTask() {
+    cout << SPACEM "Create new activity: " RESET << endl;
+    cout << endl;
+    Task task;
+    tasks.push_back(task);
+    cout << SPACEM "added " << task.getName() <<" to your list successfully" << RESET << endl;
+}
+
