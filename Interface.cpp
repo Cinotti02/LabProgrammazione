@@ -238,3 +238,17 @@ void Interface::reinsertName(string nome, bool &a) {
         cout << endl;
     }
 }
+
+int Interface::controlcin(int &scelta) {
+    while (true) {
+        cout << SPACEM "choice: " RESET ;cin >> scelta;
+        if (cin.fail()) {
+            cout <<SPACE RED " !!! Error: Enter a valid number !!! " RESET << endl;
+            cin.clear();                                      // Reset error state
+            cin.ignore(1000, '\n');                   // Clear the buffer until a new input
+            cout << endl;
+            continue;
+        }
+        break;
+    }
+}
