@@ -7,6 +7,9 @@
 #include <iostream>
 #include "Data.h"
 #include "nlohmann/json.hpp"
+#define SPACEM "                               " BOLDBLU             // Spazio per allineare il testo e colore blu
+#define SPACE  "                               "                     // Spazio per allineare il testo
+
 using namespace std;
 using namespace nlohmann;
 

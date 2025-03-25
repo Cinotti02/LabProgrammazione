@@ -5,12 +5,39 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 #include <list>
+#include "Calendar.h"
 
 #include "Task.h"
 
 
 class Interface {
 public:
+    int menu();
+
+    bool choise(int c);
+
+    void printCalendar(int year);
+
+    void todayTasks();
+
+    void showIncompleteTasks();
+
+    void searchByDate();
+
+    void addTask();
+
+    void setTaskCompleted();
+
+    void showCompletedTasks();
+
+    void removeTask();
+
+    int controlcin(int &scelta);
+
+
+
+
+
 
 private:
     list<Task> tasks;
