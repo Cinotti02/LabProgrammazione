@@ -34,6 +34,8 @@ public:
 
     int controlcin(int &scelta);
 
+    int controlCinData(int &d, int &m, int &y);
+
 
 
 

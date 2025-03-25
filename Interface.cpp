@@ -115,3 +115,26 @@ void Interface::showIncompleteTasks() {
     }
 }
 
+void Interface::searchByDate() {
+    if (tasks.begin() == tasks.end()) {
+        cout << SPACEM "you have no activities to do on this date" RESET<< endl;
+    }
+    else {
+        int d, m, y;
+        controlCinData(d, m, y);
+        int i = 1;
+        for(auto & it : tasks) {
+            if (d == it.getDate().getDay() && m == it.getDate().getMonth() && y == it.getDate().getYear()) {
+                if (i == 1)
+                    cout << SPACEM "Activities present on the date: " RESET << it.getDate().toString() << endl;
+                cout << SPACEM << i << ". " RESET << it.getName() << endl;
+                cout << endl;
+                i++;
+            }
+        }
+        if (i == 1){
+            cout << SPACE RED "          there are no activities on this date" RESET << endl;
+        }
+    }
+}
+
