@@ -101,4 +101,17 @@ void Interface::todayTasks() {
     cout << endl;
 }
 
+void Interface::showIncompleteTasks() {
+    if (tasks.begin() == tasks.end()) {
+        cout <<SPACEM "you have no activities to do" RESET << endl;
+    }
+    else {
+        cout << SPACEM "           activities to do:" RESET << endl;
+        int i = 1;
+        for (auto & it : tasks) {
+            cout << SPACEM << i << ". " RESET << it.getName()<< " " << it.getDate().toString()<< endl;
+            i++;
+        }
+    }
+}
 
