@@ -7,7 +7,7 @@
 string readFile(const string &nameFile) {
     ifstream file(nameFile);
     if (!file) {
-        cerr << "Error: iUnable to open file!\n";
+        cerr << SPACE RED "       Error: Unable to open file!" RESET << endl;
         return "";
     }
 
@@ -25,7 +25,7 @@ string readFile(const string &nameFile) {
 void writeFile(const string &nameFile, const string &content) {
     ofstream file(nameFile, ios::out);
     if (!file) {
-        cerr << "Error: Unable to open file!\n";
+        cerr << SPACE RED "       Error: Unable to open file!" RESET << endl;
         return;
     }
 
@@ -50,13 +50,13 @@ void loadTaskOnJFile(const string &nameFile, list<Task> &tasksList, list<Task> &
 
     writeFile(nameFile, j.dump(4));
 
-    cout << "Tasks saved successfully!" <<endl;
+    cout << SPACE "       Tasks saved successfully!" <<endl;
 }
 
 void loadTaskFromFile(const string &nameFile, list<Task> &tasksList, list<Task> &completedList) {
     ifstream file(nameFile);
     if (!file) {
-        cerr << "Error: Unable to open file!\n";
+        cerr << SPACE RED "       Error: Unable to open file!" RESET << endl;
         return;
     }
     tasksList.clear();
@@ -75,4 +75,5 @@ void loadTaskFromFile(const string &nameFile, list<Task> &tasksList, list<Task> 
     for (const auto& task : completed) {
         completedList.push_back(Task::fromJson(task));
     }
+    file.close();
 }

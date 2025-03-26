@@ -42,7 +42,7 @@ public:
 private:
     list<Task> tasks;
     list<Task> completed;
-    const string filePath;
+    const string filePath = "C:/Users/francesco/CLionProjects/LabProgrammazione/todo list.json";
 
 
 };
