@@ -54,7 +54,7 @@ public:
 private:
     list<Task> tasks;
     list<Task> completed;
-    const string filePath = "C:/Users/francesco/CLionProjects/LabProgrammazione/todo list.json";
+    const string filePath = "./todo list.json";
 
 
 };

@@ -128,7 +128,6 @@ void Interface::searchByDate() {
                 if (i == 1)
                     cout << SPACEM "Activities present on the date: " RESET << it.getDate().toString() << endl;
                 cout << SPACEM << i << ". " RESET << it.getName() << endl;
-                cout << endl;
                 i++;
             }
         }

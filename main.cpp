@@ -4,7 +4,7 @@
 int main() {
     cout << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
-    cout << "|    " SPACE RED "              Disclamer !!!" RESET SPACE  "                  |"<< endl;
+    cout << "|    " SPACE RED "          !!! Disclamer !!!" RESET SPACE  "                  |"<< endl;
     cout << "|      for the correct operation of the program, please run the following command in the powershell terminal    |" << endl;
     cout << "|             Command:" GREEN "    reg add \"HKCU\\Console\" /v VirtualTerminalLevel /t REG_DWORD /d 1 /f" RESET "                   |" << endl;
     cout << "|                    this command allows the program to display the colored text correctly                      |" << endl;
@@ -18,7 +18,7 @@ int main() {
 
     inter.todayTasks();
     while (running) {
-        choice = inter.menu();
+        choice = Interface::menu();
         running = inter.choice(choice);
     }
 }
