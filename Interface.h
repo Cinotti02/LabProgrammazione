@@ -14,7 +14,7 @@ class Interface {
 public:
     int menu();
 
-    bool choise(int c);
+    bool choice(int c);
 
     void printCalendar(int year);
 
@@ -34,7 +34,7 @@ public:
 
     void reinsertName(string nome, bool &a);
 
-    int controlcin(int &scelta);
+    int controlcin(int &choice);
 
     int controlCinData(int &d, int &m, int &y);
 

@@ -7,10 +7,10 @@
 #include "Utility.h"
 
 int Interface::menu() {
-    int scelta;
+    int choice;
     cout << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
-    cout << "------------------------------------------------"<<BOLDBLU<<" Menu scelta "<< RESET <<"----------------------------------------------------" << endl;
+    cout << "------------------------------------------------------"<<BOLDBLU<<" Menu "<< RESET <<"----------------------------------------------------" << endl;
     cout << endl;
     cout << SPACEM "|0|" RESET "    print calendar" << endl;
     cout << SPACEM "|1|" RESET "    activities to do today" << endl;
@@ -22,14 +22,14 @@ int Interface::menu() {
     cout << SPACEM "|7|" RESET "    delete an activity from the list" << endl;
     cout << SPACEM "|8|" RESET "    exit the program" << endl;
     cout << endl;
-    controlcin(scelta);
+    controlcin(choice);
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
     cout << endl;
-    return scelta;
+    return choice;
 }
 
-bool Interface::choise(int c){
+bool Interface::choice(int c){
     switch (c) {
         case 0:
             printCalendar(Data::getCurrentDate().getYear());
@@ -239,9 +239,9 @@ void Interface::reinsertName(string nome, bool &a) {
     }
 }
 
-int Interface::controlcin(int &scelta) {
+int Interface::controlcin(int &choice) {
     while (true) {
-        cout << SPACEM "choice: " RESET ;cin >> scelta;
+        cout << SPACEM "choice: " RESET ;cin >> choice;
         if (cin.fail()) {
             cinFile();
             continue;
