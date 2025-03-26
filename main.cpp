@@ -1,7 +1,17 @@
 #include <iostream>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+#include "Interface.h"
+#include "Task.h"
+
+
 int main() {
-    return 0;
+    Interface inter;
+    bool running = true;
+    int choice;
+
+    inter.todayTasks();
+    while (running) {
+        choice = inter.menu();
+        running = inter.choice(choice);
+    }
 }
