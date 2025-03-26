@@ -31,6 +31,18 @@ public:
 
     void removeTask();
 
+    string getFilePath() {
+        return filePath;
+    }
+
+    list<Task>& getTaskList() {
+        return tasks;
+    }
+
+    list<Task>& getCompletedTaskList() {
+        return completed;
+    }
+
     static void reinsertName(string nome, bool &a);
 
     static void controlCin(int &choice);

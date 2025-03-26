@@ -28,7 +28,7 @@ string Data::toString() const {
     ostringstream oss;
     oss << setw(2) <<  setfill('0') << day << "/"
         << setw(2) << setfill('0') << month << "/"
-        << setw(2) << year;
+        << year;
     return oss.str();
 }
 
