@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 project(LabProgrammazione)
 
-set(JSON_BuildTests OFF CACHE INTERNAL "") # stai dicendo a cmake di non runnare i test
+set(JSON_BuildTests OFF CACHE INTERNAL "") # stai dicendo a cmake di non fare i test
 
 set(CMAKE_CXX_STANDARD 20)
 

@@ -68,11 +68,11 @@ void loadTaskFromFile(const string &nameFile, list<Task> &tasksList, list<Task> 
     json tasks = j["tasks to complete"];
     json completed = j["completed tasks"];
 
-    for (auto task : tasks) {
+    for (const auto& task : tasks) {
         tasksList.push_back(Task::fromJson(task));
     }
 
-    for (auto task : completed) {
+    for (const auto& task : completed) {
         completedList.push_back(Task::fromJson(task));
     }
 }

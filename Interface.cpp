@@ -3,7 +3,7 @@
 //
 
 #include "Interface.h"
-
+#include "Calendar.h"
 #include "Utility.h"
 
 int Interface::menu() {
@@ -22,7 +22,7 @@ int Interface::menu() {
     cout << SPACEM "|7|" RESET "    delete an activity from the list" << endl;
     cout << SPACEM "|8|" RESET "    exit the program" << endl;
     cout << endl;
-    controlcin(choice);
+    controlCin(choice);
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
     cout << endl;
@@ -74,16 +74,16 @@ bool Interface::choice(int c){
     }
 }
 
-void Interface::printCalendar(const int year) {
-    const int monthPerRow=4;
+void Interface::printCalendar(const int year) const {
+    constexpr int monthPerRow=4;
     for (int i = 1; i <= 12; i +=monthPerRow) {
         printFourMonthly(i, year, monthPerRow, tasks);
         cout << endl;
     }
 }
 
-void Interface::todayTasks() {
-    Data d = Data::getCurrentDate();
+void Interface::todayTasks() const {
+    const Data d = Data::getCurrentDate();
     cout << endl;
     cout << SPACEM "Today is " << d.toString() << RESET << endl;
     cout << endl;
@@ -195,11 +195,11 @@ void Interface::showCompletedTasks() {
 }
 
 void Interface::removeTask() {
-    bool a = true;
     if (tasks.empty()) {
         cout << SPACE "No activities in the list!";
     }
     else {
+        bool a = true;
         while (a) {
             int i = 1;
             cout << SPACE "Activities present in the list:" << endl;
@@ -239,7 +239,7 @@ void Interface::reinsertName(string nome, bool &a) {
     }
 }
 
-int Interface::controlcin(int &choice) {
+void Interface::controlCin(int &choice) {
     while (true) {
         cout << SPACEM "choice: " RESET ;cin >> choice;
         if (cin.fail()) {
@@ -250,7 +250,7 @@ int Interface::controlcin(int &choice) {
     }
 }
 
-int Interface::controlCinData(int &d, int &m, int &y) {
+void Interface::controlCinData(int &d, int &m, int &y) {
     while (true) {
         cout << SPACEM "- insert date " RESET << endl;
         cout << SPACE "day: "; cin >> d;

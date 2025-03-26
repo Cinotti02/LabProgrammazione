@@ -11,7 +11,7 @@ using namespace std;
 class Data {
 public:
     Data(int d, int m, int y): day(d), month(m), year(y) {};
-    Data()= default;
+    Data() = default;
 
     void setCurrentDate();  // Imposta la data attuale
 

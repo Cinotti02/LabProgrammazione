@@ -4,21 +4,20 @@
 
 #ifndef INTERFACE_H
 #define INTERFACE_H
-#include <list>
-#include "Calendar.h"
 
+#include <list>
 #include "Task.h"
 
 
 class Interface {
 public:
-    int menu();
+    static int menu();
 
     bool choice(int c);
 
-    void printCalendar(int year);
+    void printCalendar(int year) const;
 
-    void todayTasks();
+    void todayTasks() const;
 
     void showIncompleteTasks();
 
@@ -32,13 +31,13 @@ public:
 
     void removeTask();
 
-    void reinsertName(string nome, bool &a);
+    static void reinsertName(string nome, bool &a);
 
-    int controlcin(int &choice);
+    static void controlCin(int &choice);
 
-    int controlCinData(int &d, int &m, int &y);
+    static void controlCinData(int &d, int &m, int &y);
 
-    void cinFile();
+    static void cinFile();
 
 private:
     list<Task> tasks;

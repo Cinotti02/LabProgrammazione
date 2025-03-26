@@ -40,7 +40,7 @@ void printDayOfWeek( int startMonth,int numMonths) {
     }
     cout << endl;
 }
-void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[], int numMonths, int startMonth, int year, list<Task> task) {
+void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[], int numMonths, int startMonth, int year, const list<Task>& task) {
     for (int i = 0; i < numMonths; i++) {   //        //stampa i mesi
         if (currentDay[i] == 1) {
             for (int j = startDay[i] - 1; j >= 0; j--) {                      // Stampa i giorni del mese precedente
@@ -50,7 +50,7 @@ void printDays(const int day[],const int startDay[], int prevMonthDay[], int cur
 
         while (true) {
             bool isHighlighted = false;          // Controlla se il giorno è un'attività
-            for (auto l : task){
+            for (const auto& l : task){
                 if (currentDay[i] == l.getDate().getDay() && startMonth + i == l.getDate().getMonth() && year == l.getDate().getYear()) {
                     cout << RED << setw(3) << currentDay[i] << RESET;
                     isHighlighted = true;

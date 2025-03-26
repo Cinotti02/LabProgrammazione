@@ -7,6 +7,12 @@
 #include <iostream>
 #include "Data.h"
 #include "nlohmann/json.hpp"
+
+#define RED       "\033[31m"            // Testo rosso
+#define GRAY      "\033[90m"            // Testo grigio
+#define GREEN     "\033[32m"            // Testo verde
+#define BOLDBLU   "\033[1m\033[34m"     // Testo blu in grassetto
+#define RESET     "\033[0m"             // Reset colori
 #define SPACEM "                               " BOLDBLU             // Spazio per allineare il testo e colore blu
 #define SPACE  "                               "                     // Spazio per allineare il testo
 
@@ -16,8 +22,8 @@ using namespace nlohmann;
 class Task {
 public:
     Task();                       //TODO da migliorare gli spazi tra le righe nel terminale
-    Task(string n, Data d): name(n), date(d),completionDate()  {};
-    Task(string n, Data d, Data c): name(n), date(d), completionDate(c) {};
+    Task(string n, Data d);;
+    Task(string n, Data d, Data c);
 
     void taskCompleted() {
         completionDate = Data::getCurrentDate();
@@ -41,7 +47,7 @@ public:
 
 private:
     string name;
-    Data date;
+    Data date{};
     Data completionDate;
 };
 

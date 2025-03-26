@@ -5,17 +5,20 @@
 #include "Task.h"
 #include "Calendar.h"
 
-Task::Task() {
-    string n; int d; int m; int y = 0;
+Task::Task(): completionDate() {
+    string n;
+    int d;
+    int m;
+    int y = 0;
     cout << "insert name of task: ";
     cin >> n;
     int a = 0;
     while (y < 2025 || (d < 1 || d > daysInMonth(m, y)) || m < 1 || m > 12) {
         switch (a) {
-            case 0:                                            //TODO fix problem of insert string
+            case 0: //TODO fix problem of insert string
                 cout << "insert date " << endl;
 
-                cout << "day: "<< flush;
+                cout << "day: " << flush;
                 cin >> d;
                 cout << "month: " << flush;
                 cin >> m;
@@ -24,20 +27,24 @@ Task::Task() {
 
                 a = 1;
                 break;
-            case 1:
+            default:
                 cout << "error data please rewrite" << endl;
                 a = 0;
-            break;
+                break;
         }
     }
     name = n;
     date = Data(d, m, y);
-} //TODO add controll "cin not string"
+} //TODO add control "cin not string"
+
+Task::Task(string n, const Data d): name(std::move(n)), date(d),completionDate() {}
+
+Task::Task(string n, const Data d, const Data c): name(std::move(n)), date(d), completionDate(c) {}
 
 Task Task::fromJson(const json &json) {
-    string name = json["nome"];
-    Data data = Data::fromString(json["data"]);
-    Data dataCompletamento = Data::fromString(json["dataCompletamento"]);
+    const string name = json["nome"];
+    const Data data = Data::fromString(json["data"]);
+    const Data dataCompletamento = Data::fromString(json["dataCompletamento"]);
 
     return Task(name, data, dataCompletamento);
 }

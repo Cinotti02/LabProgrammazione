@@ -5,9 +5,9 @@
 #include "Data.h"
 
 void Data::setCurrentDate() {
-    auto now = chrono::system_clock::now();
-    time_t nowTime = chrono::system_clock::to_time_t(now);
-    tm localTime;
+    const auto now = chrono::system_clock::now();
+    const time_t nowTime = chrono::system_clock::to_time_t(now);
+    tm localTime{};
     localtime_s(&localTime, &nowTime);
 
     day = localTime.tm_mday;

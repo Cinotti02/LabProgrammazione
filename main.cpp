@@ -1,13 +1,9 @@
-#include <iostream>
-
 #include "Interface.h"
-#include "Task.h"
-
 
 int main() {
     Interface inter;
     bool running = true;
-    int choice;
+    int choice = 0;
 
     inter.todayTasks();
     while (running) {
