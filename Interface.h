@@ -11,25 +11,27 @@
 
 class Interface {
 public:
-    static int menu();
+    static int menu();  //funzione per stampare il menu e restituire la scelta dell'utente
 
-    bool choice(int c);
+    bool choice(int c);  //funzione per eseguire l'azione corrispondente alla scelta dell'utente
 
-    void printCalendar(int year) const;
+    void printCalendar(int year) const;  //funzione per stampare il calendario dell'anno corrente
 
-    void todayTasks() const;
+    void todayTasks() const;  //funzione per stampare le attività da svolgere oggi
 
-    void showIncompleteTasks();
+    void showIncompleteTasks();  //funzione per stampare le attività da svolgere
 
-    void searchByDate();
+    void searchByDate();  //funzione per cercare le attività da svolgere in una data specifica
 
-    void addTask();
+    void addTask();  //funzione per aggiungere una nuova attività
 
-    void setTaskCompleted();
+    void setTaskCompleted();  //funzione per segnare un'attività come completata
 
-    void showCompletedTasks();
+    void showCompletedTasks();  //funzione per stampare le attività completate
 
-    void removeTask();
+    void removeTask();  //funzione per rimuovere un'attività dalla lista
+
+    static void reinsertName(string nome, bool &a);  //funzione per reinserire il nome dell'attività
 
     string getFilePath() const {
         return filePath;
@@ -42,8 +44,6 @@ public:
     list<Task>& getCompletedTaskList() {
         return completed;
     }
-
-    static void reinsertName(string nome, bool &a);
 
 private:
     list<Task> tasks;
