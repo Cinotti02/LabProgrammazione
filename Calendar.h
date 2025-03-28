@@ -14,13 +14,13 @@ using namespace std;
 int firstDayOfMonth(int month, int year);
 
 // Funzione per stampare il mese
-void printMonth(int monthPerRow,int startMonth, int year);
+void printMonth(int monthsPerRow,int startMonth, int year);
 
 // Funzione per stampare il nome dei giorni della settimana
-void printDayOfWeek(int startMonth, int numMonths);
+void printDayOfWeek(int startMonth, int monthsPerRow);
 
 // Funzione per stampare la settimana dei quattro mesi
-void printDays(const int day[],const int startDay[], int prevMonthDay[],int currentDay[], int numMonths, int startMonth, int year, const list<Task>& task);
+void printDays(const int day[],const int startDay[], int prevMonthDay[],int currentDay[], int monthsPerRow, int startMonth, int year, const list<Task>& task);
 
 // Funzione per stampare il quadrimestre
 void printFourMonthly(int startMonth, int year,int monthPerRow, const list<Task> &task);

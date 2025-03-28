@@ -10,7 +10,7 @@ using namespace std;
 
 class Data {
 public:
-    Data(int d, int m, int y): day(d), month(m), year(y) {};
+    Data(const int d, const int m, const int y): day(d), month(m), year(y) {};
     Data() = default;
 
     void setCurrentDate();  // Imposta la data attuale

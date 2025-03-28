@@ -4,37 +4,37 @@
 
 #include "Calendar.h"
 
-int firstDayOfMonth(int month, int year) {
+int firstDayOfMonth(const int month, const int year) {
     tm time_in = {};
     time_in.tm_year = year - 1900;
     time_in.tm_mon = month - 1;
     time_in.tm_mday = 1;
     mktime(&time_in);
-    int dayOfWeek = (time_in.tm_wday + 6) % 7; // 0 = Lunedì, 1 = Martedì, ..., 6 = Domenica
+    const int dayOfWeek = (time_in.tm_wday + 6) % 7; // 0 = Lunedì, 1 = Martedì, ..., 6 = Domenica
     return dayOfWeek;
 }
 
-void printMonth(int monthsPerRpw, int startMonth, int year) {
+void printMonth(const int monthsPerRow, const int startMonth, const int year) {
     const string months[] = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
                              "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
-    for (int i = 0; i < monthsPerRpw; i++) {
+    for (int i = 0; i < monthsPerRow; i++) {
         cout << setw(15) << BOLDBLU << months[startMonth + i - 1] + " " + to_string(year) << RESET << "         ";
     }
     cout << endl;
 }
-void printDayOfWeek( int startMonth,int numMonths) {
+void printDayOfWeek(const int startMonth, const int monthsPerRow) {
     const string daysOfWeek = "Lu Ma Me Gi Ve Sa Do";
-    for (int i = 0; i < numMonths; i++) {
+    for (int i = 0; i < monthsPerRow; i++) {
         if (startMonth + i <= 12)
             cout << setw(6) << GREEN << daysOfWeek << RESET << "      ";
     }
     cout << endl;
 }
-void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[], int numMonths, int startMonth, int year, const list<Task>& task) {
-    for (int i = 0; i < numMonths; i++) {   //        //stampa i mesi
+void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[],const int monthsPerRow,const int startMonth,const int year, const list<Task>& task) {
+    for (int i = 0; i < monthsPerRow; i++) {   //        //stampa i mesi
         if (currentDay[i] == 1) {
             for (int j = startDay[i] - 1; j >= 0; j--) {                      // Stampa i giorni del mese precedente
-                cout << GRAY << setw(3) << (prevMonthDay[i] - j) << RESET;
+                cout << GRAY << setw(3) << prevMonthDay[i] - j << RESET;
             }
         }
 
@@ -60,7 +60,7 @@ void printDays(const int day[],const int startDay[], int prevMonthDay[], int cur
             currentDay[i]++;                            // Passa al giorno successivo
         }
 
-        int remainingSpaces = (7 - (startDay[i] + currentDay[i] -2) % 7);  // **Aggiungere spazi extra se l'ultima riga è corta**
+        const int remainingSpaces = 7 - (startDay[i] + currentDay[i] -2) % 7;  // **Aggiungere spazi extra se l'ultima riga è corta**
         cout << setw(remainingSpaces *  3) << " "; // Riempie la riga
 
         cout << setw(3) << "  "; // Maggiore distanza tra i mesi
@@ -68,28 +68,28 @@ void printDays(const int day[],const int startDay[], int prevMonthDay[], int cur
     cout << endl;
 }
 
-void printFourMonthly(int startMonth, const int year, const int numMonths, const list<Task> &task) {
+void printFourMonthly(const int startMonth, const int year, const int monthPerRow, const list<Task> &task) {
 
-    printMonth(numMonths, startMonth, year);
+    printMonth(monthPerRow, startMonth, year);
 
-    printDayOfWeek(startMonth, numMonths);
+    printDayOfWeek(startMonth, monthPerRow);
 
-    int day[numMonths];                        // numero di giorni del mese
-    int startDay[numMonths];                   // giorno della settimana di inizio mese
-    int prevMonthDay[numMonths];               // numero di giorni del mese precedente
-    int currentDay[numMonths];                 // giorno corrente per ogni mese
+    int day[monthPerRow];                        // numero di giorni del mese
+    int startDay[monthPerRow];                   // giorno della settimana di inizio mese
+    int prevMonthDay[monthPerRow];               // numero di giorni del mese precedente
+    int currentDay[monthPerRow];                 // giorno corrente per ogni mese
 
-    for (int i = 0; i < numMonths; i++) {
+    for (int i = 0; i < monthPerRow; i++) {
         day[i] = Data::daysInMonth(startMonth + i, year);
         startDay[i] = firstDayOfMonth(startMonth + i, year);
         prevMonthDay[i] = Data::daysInMonth(startMonth + i - 1, year);
         currentDay[i] = 1;
     }
 
-    int maxWeeks = 6;
+    constexpr int maxWeeks = 6;
 
     for (int row = 0; row < maxWeeks; row++) {
-        printDays(day, startDay, prevMonthDay, currentDay, numMonths, startMonth, year, task);
+        printDays(day, startDay, prevMonthDay, currentDay, monthPerRow, startMonth, year, task);
     }
     cout << endl;
 }

@@ -16,7 +16,7 @@ string readFile(const string &nameFile);
 
 void writeFile(const string &nameFile, const string &content);
 
-void loadTaskOnJFile(const string &nomeFile, list<Task> &tasks, list<Task> &completed);
+void loadTaskOnJFile(const string &nameFile, list<Task> &tasks, list<Task> &completed);
 
 void loadTaskFromFile(const string &nameFile, list<Task> &tasks, list<Task> &completed);
 

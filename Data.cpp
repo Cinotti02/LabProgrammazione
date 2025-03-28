@@ -44,7 +44,7 @@ int Data::daysInMonth(const int month, const int year) {
     if (month == 4 || month == 6 || month == 9 || month == 11)
         return 30;
     if (month == 2)
-        return(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28;
+        return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) ? 29 : 28;
     return 31;
 }
 
