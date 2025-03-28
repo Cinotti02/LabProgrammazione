@@ -22,7 +22,7 @@ Task::Task(): completionDate() {
             dataValida = true;
             cout << SPACE << "Task " << n << " created successfully"<< endl;
         } catch (const runtime_error& e) {
-            cout << SPACE RED << e.what() << " - Please enter a new date" RESET << endl;
+            cout << SPACE << e.what() << " - Please enter a new date" RESET << endl;
         }
     } while (!dataValida);
 }
