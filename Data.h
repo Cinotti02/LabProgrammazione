@@ -15,15 +15,15 @@ public:
 
     void setCurrentDate();  // Imposta la data attuale
 
-    static Data getCurrentDate(); // Ritorna la data attuale
+    static Data getCurrentDate();  // Ritorna la data attuale
 
-    string toString() const;
+    string toString() const;  // Ritorna la data in formato stringa "dd/mm/yyyy"
 
-    static Data fromString(const string &s);
+    static Data fromString(const string &s);  // Converte una stringa in un oggetto Data
 
     static int daysInMonth(int month, int year);   // Funzione per ottenere il numero di giorni in un mese
 
-    bool isValid() const;
+    bool isValid() const;  // Controlla se la data è valida
 
     int getDay() const {
         return day;
