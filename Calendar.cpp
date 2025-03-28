@@ -4,16 +4,6 @@
 
 #include "Calendar.h"
 
-
-int daysInMonth(int month, int year) {
-    if (month == 4 || month == 6 || month == 9 || month == 11)
-        return 30;
-    else if (month == 2)
-        return(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28;
-    else
-        return 31;
-}
-
 int firstDayOfMonth(int month, int year) {
     tm time_in = {};
     time_in.tm_year = year - 1900;
@@ -90,9 +80,9 @@ void printFourMonthly(int startMonth, const int year, const int numMonths, const
     int currentDay[numMonths];                 // giorno corrente per ogni mese
 
     for (int i = 0; i < numMonths; i++) {
-        day[i] = daysInMonth(startMonth + i, year);
+        day[i] = Data::daysInMonth(startMonth + i, year);
         startDay[i] = firstDayOfMonth(startMonth + i, year);
-        prevMonthDay[i] = daysInMonth(startMonth + i - 1, year);
+        prevMonthDay[i] = Data::daysInMonth(startMonth + i - 1, year);
         currentDay[i] = 1;
     }
 

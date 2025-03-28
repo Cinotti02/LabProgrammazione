@@ -4,7 +4,7 @@
 int main() {
     cout << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
-    cout << "|    " SPACE RED "          !!! Disclamer !!!" RESET SPACE  "                  |"<< endl;
+    cout << "|    " SPACE RED "          !!! Disclaimer !!!" RESET SPACE  "                  |"<< endl;
     cout << "|      for the correct operation of the program, please run the following command in the powershell terminal    |" << endl;
     cout << "|             Command:" GREEN "    reg add \"HKCU\\Console\" /v VirtualTerminalLevel /t REG_DWORD /d 1 /f" RESET "                   |" << endl;
     cout << "|                    this command allows the program to display the colored text correctly                      |" << endl;
@@ -12,13 +12,25 @@ int main() {
     cout << endl;
 
     Interface inter;
-    loadTaskFromFile(inter.getFilePath(), inter.getTaskList(), inter.getCompletedTaskList());
+    try {
+        loadTaskFromFile(inter.getFilePath(), inter.getTaskList(), inter.getCompletedTaskList());
+    } catch (std::runtime_error& e) {
+        cerr << "Fatal error \"" << e.what() << "\" the program can't keep running "<< endl;
+        return 1;
+    }
+
     bool running = true;
     int choice = 0;
 
     inter.todayTasks();
     while (running) {
-        choice = Interface::menu();
-        running = inter.choice(choice);
+        try {
+            choice = Interface::menu();
+            running = inter.choice(choice);
+
+        } catch (std::runtime_error &e) {
+            cerr << "Fatal error \"" << e.what() << "\" the program can't keep running "<< endl;
+            break;
+        }
     }
 }

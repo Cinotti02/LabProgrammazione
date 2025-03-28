@@ -22,7 +22,7 @@ using namespace nlohmann;
 class Task {
 public:
     Task();                       //TODO da migliorare gli spazi tra le righe nel terminale
-    Task(string n, Data d);;
+    Task(string n, Data d);
     Task(string n, Data d, Data c);
 
     void taskCompleted() {

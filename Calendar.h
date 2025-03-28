@@ -7,11 +7,8 @@
 
 #include <list>
 #include "Task.h"
-
+#include "Data.h"
 using namespace std;
-
-// Funzione per ottenere il numero di giorni in un mese
-int daysInMonth(int month, int year);
 
 // Funzione per ottenere il giorno della settimana del primo giorno del mese
 int firstDayOfMonth(int month, int year);

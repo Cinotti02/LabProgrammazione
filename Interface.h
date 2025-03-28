@@ -31,7 +31,7 @@ public:
 
     void removeTask();
 
-    string getFilePath() {
+    string getFilePath() const {
         return filePath;
     }
 
@@ -44,12 +44,6 @@ public:
     }
 
     static void reinsertName(string nome, bool &a);
-
-    static void controlCin(int &choice);
-
-    static void controlCinData(int &d, int &m, int &y);
-
-    static void cinFile();
 
 private:
     list<Task> tasks;

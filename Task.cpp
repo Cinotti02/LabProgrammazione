@@ -3,48 +3,46 @@
 //
 
 #include "Task.h"
-#include "Calendar.h"
+#include "Utility.h"
 
 Task::Task(): completionDate() {
-    string n;
-    int d;
-    int m;
-    int y = 0;
-    cout << "insert name of task: ";
-    cin >> n;
-    int a = 0;
-    while (y < 2025 || (d < 1 || d > daysInMonth(m, y)) || m < 1 || m > 12) {
-        switch (a) {
-            case 0: //TODO fix problem of insert string
-                cout << "insert date " << endl;
-
-                cout << "day: " << flush;
-                cin >> d;
-                cout << "month: " << flush;
-                cin >> m;
-                cout << "year: " << flush;
-                cin >> y;
-
-                a = 1;
-                break;
-            default:
-                cout << "error data please rewrite" << endl;
-                a = 0;
-                break;
-        }
-    }
+    string n; int d; int m; int y = 0;
+    cout << SPACEM "- insert name of task: ";
+    getline(cin >>ws, n);
+    controlCinData(d, m, y);
     name = n;
-    date = Data(d, m, y);
-} //TODO add control "cin not string"
+    bool dataValida = false;
+    do {
+        try {
+            controlCinData(d, m, y);
+            date = Data(d, m, y);
+            if (!date.isValid()) {
+                throw runtime_error("created successfully");
+            }
+            dataValida = true;
+            cout << SPACE << "Task " << n << " created successfully"<< endl;
+        } catch (const runtime_error& e) {
+            cout << SPACE RED << e.what() << " - Please enter a new date" RESET << endl;
+        }
+    } while (!dataValida);
+}
 
 Task::Task(string n, const Data d): name(std::move(n)), date(d),completionDate() {}
 
 Task::Task(string n, const Data d, const Data c): name(std::move(n)), date(d), completionDate(c) {}
 
 Task Task::fromJson(const json &json) {
+    if (!json.contains("nome") || !json.contains("data") || !json.contains("dataCompletamento")) {
+        throw runtime_error("JSON non valido: campi mancanti");
+    }
+
     const string name = json["nome"];
     const Data data = Data::fromString(json["data"]);
     const Data dataCompletamento = Data::fromString(json["dataCompletamento"]);
+
+    if (!data.isValid() || (dataCompletamento.toString() != "00/00/0000" && !dataCompletamento.isValid())) {
+        throw runtime_error("Date non valide nel JSON");
+    }
 
     return Task(name, data, dataCompletamento);
 }

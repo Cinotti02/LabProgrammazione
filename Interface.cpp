@@ -3,7 +3,7 @@
 //
 
 #include "Interface.h"
-#include "Calendar.h"
+
 #include "Utility.h"
 
 int Interface::menu() {
@@ -15,7 +15,7 @@ int Interface::menu() {
     cout << SPACEM "|0|" RESET "    print calendar" << endl;
     cout << SPACEM "|1|" RESET "    activities to do today" << endl;
     cout << SPACEM "|2|" RESET "    view your to-do list" << endl;
-    cout << SPACEM "|3|" RESET "    search for activities whit a specific data" << endl;
+    cout << SPACEM "|3|" RESET "    search for activities with a specific data" << endl;
     cout << SPACEM "|4|" RESET "    add new activity" << endl;
     cout << SPACEM "|5|" RESET "    mark an activity as completed" << endl;
     cout << SPACEM "|6|" RESET "    view all completed activities" << endl;
@@ -236,50 +236,4 @@ void Interface::reinsertName(string nome, bool &a) {
         cout <<SPACE RED"        !!! invalid choice !!!" << endl;
         cout << endl;
     }
-}
-
-void Interface::controlCin(int &choice) {
-    while (true) {
-        cout << SPACEM "choice: " RESET ;cin >> choice;
-        if (cin.fail()) {
-            cinFile();
-            continue;
-        }
-        break;
-    }
-}
-
-void Interface::controlCinData(int &d, int &m, int &y) {
-    while (true) {
-        cout << SPACEM "- insert date " RESET << endl;
-        cout << SPACE "day: "; cin >> d;
-        if (cin.fail()) {
-            cinFile();
-            continue;                                                                         // Return to the beginning of the loop
-        }
-        cout << SPACE "month: "; cin >> m;
-        if (cin.fail()) {
-            cinFile();
-            continue;                                                                         // Return to the beginning of the loop
-        }
-        cout << SPACE "year: "; cin >> y;
-        if (cin.fail()) {
-            cinFile();
-            continue;
-        }
-        if (y < 2025 || d < 1 || d > daysInMonth(m, y) || m < 1 || m > 12) {
-            cout << SPACE RED " !!! Error: Enter a valid date !!! "   <<RESET;
-            cout << endl;
-            continue;
-        }
-        break;
-
-    }
-}
-
-void Interface::cinFile() {
-    cout << SPACE RED " !!! Error: Enter a valid number !!! " RESET << endl;
-    cin.clear();                                      // Reset error state
-    cin.ignore(1000, '\n');                   // Clear the buffer until a new input
-    cout << endl;
 }

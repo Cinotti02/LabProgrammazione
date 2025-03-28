@@ -21,6 +21,10 @@ public:
 
     static Data fromString(const string &s);
 
+    static int daysInMonth(int month, int year);   // Funzione per ottenere il numero di giorni in un mese
+
+    bool isValid() const;
+
     int getDay() const {
         return day;
     }

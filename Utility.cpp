@@ -77,3 +77,45 @@ void loadTaskFromFile(const string &nameFile, list<Task> &tasksList, list<Task> 
     }
     file.close();
 }
+
+
+void controlCin(int &choice) {
+    while (true) {
+        cout << SPACEM "choice: " RESET ;cin >> choice;
+        if (cin.fail()) {
+            cinFile();
+            continue;
+        }
+        break;
+    }
+}
+
+void controlCinData(int &d, int &m, int &y) {
+    while (true) {
+        cout << SPACEM "- insert date " RESET << endl;
+        cout << SPACE "day: "; cin >> d;
+        if (cin.fail()) {
+            cinFile();
+            continue;                                                                         // Return to the beginning of the loop
+        }
+        cout << SPACE "month: "; cin >> m;
+        if (cin.fail()) {
+            cinFile();
+            continue;                                                                         // Return to the beginning of the loop
+        }
+        cout << SPACE "year: "; cin >> y;
+        if (cin.fail()) {
+            cinFile();
+            continue;
+        }
+        // La validazione della data verrà gestita dal costruttore di Task
+        break;
+    }
+}
+
+void cinFile() {
+    cout << SPACE RED " !!! Error: Enter a valid number !!! " RESET << endl;
+    cin.clear();                                      // Reset error state
+    cin.ignore(1000, '\n');                   // Clear the buffer until a new input
+    cout << endl;
+}
