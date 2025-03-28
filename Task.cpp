@@ -9,7 +9,6 @@ Task::Task(): completionDate() {
     string n; int d; int m; int y = 0;
     cout << SPACEM "- insert name of task: ";
     getline(cin >>ws, n);
-    controlCinData(d, m, y);
     name = n;
     bool dataValida = false;
     do {
@@ -21,6 +20,7 @@ Task::Task(): completionDate() {
             }
             dataValida = true;
             cout << SPACE << "Task " << n << " created successfully"<< endl;
+            cout << endl;
         } catch (const runtime_error& e) {
             cout << SPACE << e.what() << " - Please enter a new date" RESET << endl;
         }
