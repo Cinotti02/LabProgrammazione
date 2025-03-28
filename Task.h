@@ -21,17 +21,16 @@ using namespace nlohmann;
 
 class Task {
 public:
-    Task();                       //TODO da migliorare gli spazi tra le righe nel terminale
+    Task();
     Task(string n, Data d);
     Task(string n, Data d, Data c);
 
-    void taskCompleted() {
-        completionDate = Data::getCurrentDate();
-    }
 
-    static Task fromJson(const json &json);
+    void taskCompleted();  //funzione per segnare un'attività come completata
 
-    json toJason();
+    static Task fromJson(const json &json);  //funzione per creare un'attività da un oggetto JSON
+
+    json toJason();  //funzione per convertire un'attività in un oggetto JSON
 
     string getName() const{
         return name;

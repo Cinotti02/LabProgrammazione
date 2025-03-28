@@ -31,6 +31,12 @@ Task::Task(string n, const Data d): name(std::move(n)), date(d),completionDate()
 
 Task::Task(string n, const Data d, const Data c): name(std::move(n)), date(d), completionDate(c) {}
 
+void Task::taskCompleted() {
+    if (completionDate.toString() == "00/00/0000") {
+        completionDate = Data::getCurrentDate();
+    }
+}
+
 Task Task::fromJson(const json &json) {
     if (!json.contains("nome") || !json.contains("data") || !json.contains("dataCompletamento")) {
         throw runtime_error("JSON non valido: campi mancanti");
