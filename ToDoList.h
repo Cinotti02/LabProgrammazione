@@ -10,6 +10,22 @@
 
 
 class ToDoList {
+
+    void addTask(Task task);
+
+    void removeTask(Task task);
+
+    void removeAllTasks();
+
+    void showTasks() const;
+
+    void importantTasks() const;
+
+    void showCompletedTasks() const;
+
+    void showIncompleteTasks() const;
+
+
 private:
     string nameList;  // Nome della lista
     list<Task> tasks;  // Lista delle attività

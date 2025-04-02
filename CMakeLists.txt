@@ -16,4 +16,6 @@ add_executable(LabProgrammazione main.cpp
         Utility.cpp
         Utility.h
         Interface.cpp
-        Interface.h)
+        Interface.h
+        ToDoList.cpp
+        ToDoList.h)
