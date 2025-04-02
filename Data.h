@@ -5,6 +5,8 @@
 #ifndef DATA_H
 #define DATA_H
 #include <chrono>
+
+#include "Task.h"
 using namespace std;
 
 
@@ -18,6 +20,8 @@ public:
     Data() = default;
 
     void setCurrentDate();  // Imposta la data attuale
+
+    bool operator==(const Data & data) const;
 
     static Data getCurrentDate();  // Ritorna la data attuale
 

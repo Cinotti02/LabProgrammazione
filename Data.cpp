@@ -15,6 +15,12 @@ void Data::setCurrentDate() {
     year = localTime.tm_year + 1900;
 }
 
+bool Data::operator==(const Data &data) const {
+    if (day == data.day && month == data.month && year == data.year)
+        return true;
+    return false ;
+}
+
 Data Data::getCurrentDate() {
     const auto now = chrono::system_clock::now();
     const time_t nowTime = chrono::system_clock::to_time_t(now);
