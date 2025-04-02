@@ -11,19 +11,19 @@
 
 class ToDoList {
 
-    void addTask(Task task);
+    void addTask(Task &task);
 
-    void removeTask(Task task);
+    bool removeTask(Task &task);
 
-    void removeAllTasks();
+    void removeAllUncompletedTasks();
 
-    void showTasks() const;
+    list<Task> getTasks() const;
 
-    void importantTasks() const;
+    list<Task> getImportantTasks() const;
 
-    void showCompletedTasks() const;
+    list<Task> getCompletedTasks() const;
 
-    void showIncompleteTasks() const;
+    list<Task> getUncompletedTasks() const;
 
 
 private:
