@@ -8,16 +8,13 @@
 #include <list>
 #include "Task.h"
 
-
-class Interface {
-public:
     static int menu();  //funzione per stampare il menu e restituire la scelta dell'utente
 
     bool choice(int c);  //funzione per eseguire l'azione corrispondente alla scelta dell'utente
 
-    void printCalendar(int year) const;  //funzione per stampare il calendario dell'anno corrente
+    void printCalendar(int year);  //funzione per stampare il calendario dell'anno corrente
 
-    void todayTasks() const;  //funzione per stampare le attività da svolgere oggi
+    void todayTasks();  //funzione per stampare le attività da svolgere oggi
 
     void showIncompleteTasks();  //funzione per stampare le attività da svolgere
 
@@ -33,25 +30,9 @@ public:
 
     static void reinsertName(string nome, bool &a);  //funzione per reinserire il nome dell'attività
 
-    string getFilePath() const {
-        return filePath;
-    }
+    Task createTasks();
 
-    list<Task>& getTaskList() {
-        return tasks;
-    }
-
-    list<Task>& getCompletedTaskList() {
-        return completed;
-    }
-
-private:
-    list<Task> tasks;
-    list<Task> completed;
-    const string filePath = "./todo list.json";
-
-
-};
+    bool choiceB();  //funzione per controllare la scelta dell'utente tra due opzioni
 
 
 

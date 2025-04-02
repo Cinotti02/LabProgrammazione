@@ -21,10 +21,9 @@ using namespace nlohmann;
 
 class Task {
 public:
-    Task();
-    Task(string n, Data d);
-    Task(string n, Data d, Data c);
-
+    Task(const string &n,const string &d);
+    Task(const string &n,const string &d, Data dat);
+    Task(const string &n,const string &d, Data dat, Data c); //Costruttore per la rigenerazione
 
     void taskCompleted();  //funzione per segnare un'attività come completata
 
@@ -43,11 +42,21 @@ public:
     Data getCompletionDate() const {
         return completionDate;
     }
+    bool getCompleted() const {
+        return completed;
+    }
+
+    bool getImportant() const {
+        return important;
+    }
 
 private:
     string name;
+    string description;
+    bool completed = false;
+    bool important = false;
     Data date{};
-    Data completionDate;
+    Data completionDate{};
 };
 
 

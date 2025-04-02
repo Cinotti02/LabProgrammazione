@@ -29,7 +29,7 @@ int Interface::menu() {
     return choice;
 }
 
-bool Interface::choice(const int c){
+bool choice(const int c){
     switch (c) {
         case 0:
             printCalendar(Data::getCurrentDate().getYear());
@@ -74,7 +74,7 @@ bool Interface::choice(const int c){
     }
 }
 
-void Interface::printCalendar(const int year) const {
+void printCalendar(const int year){
     constexpr int monthPerRow=4;
     for (int i = 1; i <= 12; i +=monthPerRow) {
         printFourMonthly(i, year, monthPerRow, tasks);
@@ -82,7 +82,7 @@ void Interface::printCalendar(const int year) const {
     }
 }
 
-void Interface::todayTasks() const {
+void todayTasks(){
     const Data d = Data::getCurrentDate();
     cout << endl;
     cout << SPACEM "Today is " << d.toString() << RESET << endl;
@@ -101,7 +101,7 @@ void Interface::todayTasks() const {
     cout << endl;
 }
 
-void Interface::showIncompleteTasks() {
+void showIncompleteTasks() {
     if (tasks.begin() == tasks.end()) {
         cout <<SPACEM "you have no activities to do" RESET << endl;
     }
@@ -115,7 +115,7 @@ void Interface::showIncompleteTasks() {
     }
 }
 
-void Interface::searchByDate() {
+void searchByDate() {
     if (tasks.begin() == tasks.end()) {
         cout << SPACEM "you have no activities to do on this date" RESET<< endl;
     }
@@ -137,7 +137,7 @@ void Interface::searchByDate() {
     }
 }
 
-void Interface::addTask() {
+void addTask() {
     cout << SPACEM "Create new activity: " RESET << endl;
     cout << endl;
     const Task task;
@@ -145,7 +145,7 @@ void Interface::addTask() {
     cout << SPACEM "added " << task.getName() <<" to your list successfully" << RESET << endl;
 }
 
-void Interface::setTaskCompleted() {
+void setTaskCompleted() {
     if (tasks.empty()) {
         cout << SPACE "No activities to complete!";
     }
@@ -179,7 +179,7 @@ void Interface::setTaskCompleted() {
     }
 }
 
-void Interface::showCompletedTasks() {
+void showCompletedTasks() {
     if (completed.begin() == completed.end()) {
         cout << SPACEM "you have no completed activities" RESET << endl;
     }
@@ -193,7 +193,7 @@ void Interface::showCompletedTasks() {
     }
 }
 
-void Interface::removeTask() {
+void removeTask() {
     if (tasks.empty()) {
         cout << SPACE "No activities in the list!";
     }
@@ -223,7 +223,7 @@ void Interface::removeTask() {
     }
 }
 
-void Interface::reinsertName(string nome, bool &a) {
+void reinsertName(string nome, bool &a) {
     cout << SPACE "do you want to enter a different name? Y/N" << endl;
     while (true) {
         cout << SPACE "choice:";cin >> nome;
@@ -235,5 +235,49 @@ void Interface::reinsertName(string nome, bool &a) {
             return;
         cout <<SPACE RED"        !!! invalid choice !!!" << endl;
         cout << endl;
+    }
+}
+
+Task createTasks() {
+    string n; string desc; int d; int m; int y;
+    cout << SPACEM "- insert name of task: ";
+    getline(cin >>ws, n);
+    cout << "vuoi aggiungere una descrizione? Y/N" << endl;
+    bool de = choiceB();
+    if (de == true) {;
+        cout << SPACEM "- insert description: ";
+        getline(cin >> ws, desc);
+    }
+    else {
+        desc = "";
+    }
+    cout << "vuoi aggiungere una data? Y/N" << endl;
+    de = choiceB();
+    if (de == true) {
+        do {
+            try {
+                cout << "vuoi aggiungere una descrizione? Y/N" << endl;
+                controlCinData(d, m, y);
+                Data data(d, m, y);
+                dataValid = true;
+                cout << SPACE << "Task " << n << " created successfully"<< endl;
+                cout << endl;
+            } catch (const runtime_error& e) {
+                cout << SPACE << e.what() << " - Please enter a new date" RESET << endl;
+            }
+        } while (!dataValid);
+    }
+}
+
+bool choiceB() {
+    string c;
+    while (true) {
+        cout << SPACE "choice:";cin >> c;
+        if (c == "Y" || c == "y" || c == "yes" || c == "Yes") {
+            return true;
+        }
+        if(c == "N" || c == "n" || c == "no" || c == "No")
+            return false;
+        cout << SPACE RED"        !!! invalid choice !!!" << endl;
     }
 }
