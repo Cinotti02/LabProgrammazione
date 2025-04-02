@@ -10,7 +10,11 @@ using namespace std;
 
 class Data {
 public:
-    Data(const int d, const int m, const int y): day(d), month(m), year(y) {};
+    Data(const int d, const int m, const int y): day(d), month(m), year(y) {
+        if (!isValid(d, m, y)) {
+            throw runtime_error("Invalid date");
+        }
+    };
     Data() = default;
 
     void setCurrentDate();  // Imposta la data attuale
@@ -23,7 +27,7 @@ public:
 
     static int daysInMonth(int month, int year);   // Funzione per ottenere il numero di giorni in un mese
 
-    bool isValid() const;  // Controlla se la data è valida
+      // Controlla se la data è valida
 
     int getDay() const {
         return day;
@@ -41,6 +45,8 @@ private:
     int day;
     int month;
     int year;
+
+    static bool isValid(int d, int m, int y);
 };
 
 

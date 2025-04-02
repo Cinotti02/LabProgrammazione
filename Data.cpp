@@ -37,10 +37,10 @@ Data Data::fromString(const string &s) {
     char sep;
     stringstream ss(s);
     ss >> d >> sep >> m >> sep >> y;
-    return {d, m, y};
+    return Data(d, m, y);
 }
 
-int Data::daysInMonth(const int month, const int year) {
+int Data::daysInMonth(const int month, const int year) { //TODO privato
     if (month == 4 || month == 6 || month == 9 || month == 11)
         return 30;
     if (month == 2)
@@ -48,11 +48,11 @@ int Data::daysInMonth(const int month, const int year) {
     return 31;
 }
 
-bool Data::isValid() const {
+bool Data::isValid(int d, int m, int y) {
     // Validazione normale
-    if (year < getCurrentDate().getYear() || month < 1 || month > 12)
+    if (y < getCurrentDate().getYear() || m < 1 || m > 12)
         return false;
-    if (day < 1 || day > daysInMonth(month, year))
+    if (d < 1 || d > daysInMonth(m, y))
         return false;
     return true;
 }
