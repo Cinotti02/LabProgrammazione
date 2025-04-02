@@ -10,9 +10,9 @@
 
 
 class ToDoList {
-    void addTask(Task &task);
+    void addTask(const Task &task);
 
-    bool removeTask(Task &task);
+    bool removeTask(const Task &task);
 
     void removeAllUncompletedTasks();
 

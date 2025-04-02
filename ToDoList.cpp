@@ -8,10 +8,10 @@
 // CRUD
 // Create, Read, Update, Delete
 
-void ToDoList::addTask(Task &task) {
-    for (auto it = tasks.begin(); it != tasks.end(); it++) {
-        if (it->getName() == task.getName()) {
-            if (it->getDate() == task.getDate()) {
+void ToDoList::addTask(const Task &task) {
+    for (auto & it : tasks) {
+        if (it.getName() == task.getName()) {
+            if (it.getDate() == task.getDate()) {
                 throw runtime_error("Task already exists with the same name and date");
             }
         }
@@ -19,9 +19,8 @@ void ToDoList::addTask(Task &task) {
     tasks.push_back(task);
 }
 
-bool ToDoList::removeTask(Task &task) {
-    auto it = find(tasks.begin(), tasks.end(), task);
-    if (it != tasks.end()) {
+bool ToDoList::removeTask(const Task &task) {
+    if (auto it = find(tasks.begin(), tasks.end(), task); it != tasks.end()) {
         tasks.erase(it);
         return true;
     }
@@ -29,7 +28,7 @@ bool ToDoList::removeTask(Task &task) {
 }
 
 void ToDoList::removeAllUncompletedTasks() {
-    for (auto it : tasks){
+    for (const auto& it : tasks){
     if ( it.getCompleted() == 0)
         tasks.remove(it);
     };
