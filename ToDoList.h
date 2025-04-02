@@ -10,12 +10,15 @@
 
 
 class ToDoList {
-
     void addTask(Task &task);
 
     bool removeTask(Task &task);
 
     void removeAllUncompletedTasks();
+
+    void setNameList(const string &name);
+
+    void setFilePath(const string &path);
 
     list<Task> getTasks() const;
 
@@ -29,7 +32,7 @@ class ToDoList {
 private:
     string nameList;  // Nome della lista
     list<Task> tasks;  // Lista delle attività
-    const string filePath = "./todo list.json";  // Percorso del file JSON
+    string filePath = "./todo list.json";  // Percorso del file JSON
 };
 
 

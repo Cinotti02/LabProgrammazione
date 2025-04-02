@@ -9,12 +9,15 @@
 // Create, Read, Update, Delete
 
 void ToDoList::addTask(Task &task) {
-// TODO implemetare controllo che la nuova task non abbia un nome che già esiste
-    // restituire booleano che rappresenta lo stato di creazione della task
+    for (auto it = tasks.begin(); it != tasks.end(); it++) {
+        if (it->getName() == task.getName()) {
+            if (it->getDate() == task.getDate()) {
+                throw runtime_error("Task already exists with the same name and date");
+            }
+        }
+    }
     tasks.push_back(task);
 }
-
-// TODO metodi di update delle task
 
 bool ToDoList::removeTask(Task &task) {
     auto it = find(tasks.begin(), tasks.end(), task);
@@ -32,6 +35,14 @@ void ToDoList::removeAllUncompletedTasks() {
     };
 }
 
+void ToDoList::setNameList(const string &name) {
+    nameList = name;
+}
+
+void ToDoList::setFilePath(const string &path) {
+    filePath = path;
+}
+
 list<Task> ToDoList::getTasks() const {
     return tasks;
 }
@@ -40,7 +51,7 @@ list<Task> ToDoList::getImportantTasks() const {
     std::list<Task> importantTasks;
 
     for (const auto& task : tasks) {
-        if (task.getDate().getDay() == 1) { // Assuming the first day of the month is important
+        if (task.getImportant == 0) {
             importantTasks.push_back(task);
         }
     }
@@ -51,7 +62,7 @@ list<Task> ToDoList::getImportantTasks() const {
 list<Task> ToDoList::getCompletedTasks() const {
     list<Task> completedTasks;
     for (const auto& task : tasks) {
-        if (task.getCompletionDate().getDay() != 0) { // Assuming a non-zero day indicates completion
+        if (task.getCompleted() == 1) {
             completedTasks.push_back(task);
         }
     }
@@ -61,7 +72,7 @@ list<Task> ToDoList::getCompletedTasks() const {
 list<Task> ToDoList::getUncompletedTasks() const {
     list<Task> uncompletedTasks;
     for (const auto& task : tasks) {
-        if (task.getCompletionDate().getDay() == 0) { // Assuming a zero day indicates incompletion
+        if (task.getCompleted() == 0) {
             uncompletedTasks.push_back(task);
         }
     }
