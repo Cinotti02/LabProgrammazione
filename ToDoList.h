@@ -47,7 +47,6 @@ private:
     string nameList;  // Nome della lista
     list<Task> tasks;  // Lista delle attività
     string filePath = "C:/Users/francesco/CLionProjects/LabProgrammazione/todo list.json";
-    //string filePath = "./todo list.json";  // Percorso del file JSON
 
     bool existsTaskWithNameAndDate(const string &name, const Data &date) const;
 };
