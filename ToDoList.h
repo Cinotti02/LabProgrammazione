@@ -16,6 +16,8 @@ public:
 
     bool removeTask(const Task &task);
 
+    void clearTasks();
+
     void removeAllUncompletedTasks();
 
     void setNameList(const string &name);

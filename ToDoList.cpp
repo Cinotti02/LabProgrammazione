@@ -31,6 +31,10 @@ bool ToDoList::removeTask(const Task &t) {
     return false;
 }
 
+void ToDoList::clearTasks() {
+    tasks.clear();
+}
+
 void ToDoList::removeAllUncompletedTasks() {
     tasks.remove_if([](const Task& t){
         return !t.getCompleted();
