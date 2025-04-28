@@ -21,15 +21,19 @@ using namespace nlohmann;
 
 class Task {
 public:
-    Task(const string &n,const string &d);
-    Task(const string &n,const string &d, Data dat);
-    Task(const string &n,const string &d, Data dat, Data c); //Costruttore per la rigenerazione
+    explicit Task(const string &n,const string &desc = "", bool important = false, bool complete = false); //Costruttore per la scrittura su file
+
+    Task(const string &n, const Data &d ,const string &desc = "", bool important = false, bool complete = false);
+
+    Task(const Data &c, const string &n, const string &desc = "", bool important = false, bool complete = false); //Costruttore per la scrittura su file
+
+    Task(const string &n, const Data &d, const Data &c, const string &desc = "", bool important = false, bool complete = false); //Costruttore per la scrittura su file
 
     void taskCompleted();  //funzione per segnare un'attività come completata
 
     static Task fromJson(const json &json);  //funzione per creare un'attività da un oggetto JSON
 
-    json toJason();  //funzione per convertire un'attività in un oggetto JSON
+    json toJson() const;  //funzione per convertire un'attività in un oggetto JSON
 
     string getName() const{
         return name;
@@ -50,13 +54,16 @@ public:
         return important;
     }
 
+    bool operator==(const Task& other) const {
+        return name == other.name && date == other.date && description == other.description;
+    }
 private:
     string name;
     string description;
-    bool completed = false;
-    bool important = false;
-    Data date{};
-    Data completionDate{};
+    bool completed;
+    bool important;
+    Data date;
+    Data completionDate;
 };
 
 

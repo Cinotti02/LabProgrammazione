@@ -5,58 +5,61 @@
 #include "Task.h"
 #include "Utility.h"
 
-Task::Task(): completionDate() {
-    string n; int d; int m; int y = 0;
-    cout << SPACEM "- insert name of task: ";
-    getline(cin >>ws, n);
-    name = n;
-    bool dataValida = false;
-    do {
-        try {
-            controlCinData(d, m, y);
-            date = Data(d, m, y);
-            if (!date.isValid()) {
-                throw runtime_error("created successfully");
-            }
-            dataValida = true;
-            cout << SPACE << "Task " << n << " created successfully"<< endl;
-            cout << endl;
-        } catch (const runtime_error& e) {
-            cout << SPACE << e.what() << " - Please enter a new date" RESET << endl;
-        }
-    } while (!dataValida);
-}
+Task::Task(const string &n, const string &desc, bool important, bool complete): name(n), description(desc), date(), completionDate(), important(important), completed(complete) {}
 
-Task::Task(string n, const Data d): name(std::move(n)), date(d),completionDate() {}
+Task::Task(const string &n, const Data &d, const string &desc, bool important, bool complete): name(n), description(desc), date(d), completionDate(), important(important), completed(complete) {}
 
-Task::Task(string n, const Data d, const Data c): name(std::move(n)), date(d), completionDate(c) {}
+Task::Task(const Data &c, const string &n, const string &desc, bool important, bool complete): name(n), description(desc), date(), completionDate(c), important(important), completed(complete) {}
+
+Task::Task(const string &n, const Data &d, const Data &c, const string &desc, bool important, bool complete): name(n), description(desc), date(d), completionDate(c), important(important), completed(complete) {}
 
 void Task::taskCompleted() {
-    if (completionDate.toString() == "00/00/0000") {
-        completionDate = Data::getCurrentDate();
-    }
+    completed = true;
+    completionDate = Data::getCurrentDate();
 }
 
 Task Task::fromJson(const json &json) {
-    if (!json.contains("nome") || !json.contains("data") || !json.contains("dataCompletamento")) {
-        throw runtime_error("JSON non valido: campi mancanti");
+    if (!json.contains("nome")) {                        //FIXME eccezione
+        throw runtime_error("JSON non valido: campo nome mancante");
     }
 
     const string name = json["nome"];
-    const Data data = Data::fromString(json["data"]);
-    const Data dataCompletamento = Data::fromString(json["dataCompletamento"]);
+    const string description = json["description"];
+    const bool priority = json["priority"];
 
-    if (!data.isValid() || (dataCompletamento.toString() != "00/00/0000" && !dataCompletamento.isValid())) {
-        throw runtime_error("Date non valide nel JSON");
+    Data dataCompletamento;
+    if (json.contains("dataCompletamento")) {
+        dataCompletamento = Data::fromString(json["dataCompletamento"]);
+    } else {
+        dataCompletamento = Data(0, 0, 0, false);
     }
 
-    return Task(name, data, dataCompletamento);
+    Data dataScadenza;
+    if (json.contains("data scadenza")) {
+        dataScadenza = Data::fromString(json["data scadenza"]);
+    } else {
+        dataScadenza = Data(0, 0, 0, false);
+    }
+
+    Task t(name, dataScadenza, dataCompletamento, description, priority);
+    return t;
+    /*if (json["data scadenza"] != "00/00/0000") {
+        const Data data = Data::fromString(json["data scadenza"]);
+        Task t(name,  data, dataCompletamento, description, priority);//FIXME eccezione
+
+    }
+    Task t(name, description, priority);
+    return t;*/
 }
 
-json Task::toJason() {
+json Task::toJson() const{ // FIXME se non ha data e data di completamento usare un altro costruttore
     json obj;
     obj["nome"] = name;
-    obj["data"] = date.toString();
-    obj["dataCompletamento"] = completionDate.toString();
+    obj["description"] = description;
+    obj["priority"] = important;
+    if (date.toString() != "00/00/0000") {
+        obj["data scadenza"] = date.toString();
+        obj["dataCompletamento"] = completionDate.toString();
+    }
     return obj;
 }
