@@ -10,6 +10,8 @@
 
 
 class ToDoList {
+public:
+
     void addTask(const Task &task);
 
     bool removeTask(const Task &task);
@@ -20,7 +22,19 @@ class ToDoList {
 
     void setFilePath(const string &path);
 
-    list<Task> getTasks() const;
+    void createAndAddTask(const string& name, const string& description, const Data& date, bool important = false, bool completed = false, const Data& completionDate = Data(0, 0, 0, false));;
+
+    bool completeTaskByName(const string& name);
+
+    bool removeTaskByName(const string& name);
+
+    list<Task> getTasksByDate(const Data& date) const;
+
+    list<Task>& getTasks();
+
+    const list<Task>& getTasks() const;
+
+    string getFilePath() const;
 
     list<Task> getImportantTasks() const;
 
@@ -32,7 +46,10 @@ class ToDoList {
 private:
     string nameList;  // Nome della lista
     list<Task> tasks;  // Lista delle attività
-    string filePath = "./todo list.json";  // Percorso del file JSON
+    string filePath = "C:/Users/francesco/CLionProjects/LabProgrammazione/todo list.json";
+    //string filePath = "./todo list.json";  // Percorso del file JSON
+
+    bool existsTaskWithNameAndDate(const string &name, const Data &date) const;
 };
 
 
