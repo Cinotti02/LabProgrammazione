@@ -3,6 +3,7 @@
 //
 
 #include "Data.h"
+#include <iomanip>
 
 void Data::setCurrentDate() {
     const auto now = chrono::system_clock::now();
@@ -27,7 +28,7 @@ Data Data::getCurrentDate() {
     tm localTime{};
     localtime_s(&localTime, &nowTime);
 
-    return {localTime.tm_mday, localTime.tm_mon + 1, localTime.tm_year + 1900};
+    return {localTime.tm_mday, localTime.tm_mon + 1, localTime.tm_year + 1900, false};
 }
 
 string Data::toString() const {
@@ -43,10 +44,10 @@ Data Data::fromString(const string &s) {
     char sep;
     stringstream ss(s);
     ss >> d >> sep >> m >> sep >> y;
-    return Data(d, m, y);
+    return Data(d, m, y, false);
 }
 
-int Data::daysInMonth(const int month, const int year) { //TODO privato
+int Data::daysInMonth(const int month, const int year) {
     if (month == 4 || month == 6 || month == 9 || month == 11)
         return 30;
     if (month == 2)

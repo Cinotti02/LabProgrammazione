@@ -5,14 +5,19 @@
 #ifndef DATA_H
 #define DATA_H
 #include <chrono>
+#include <iostream>
 
-#include "Task.h"
 using namespace std;
 
 
 class Data {
 public:
-    Data(const int d, const int m, const int y): day(d), month(m), year(y) {
+    Data(const int d, const int m, const int y, const bool validata=true): day(d), month(m), year(y) {
+        if (!validata) {
+            return;
+        }
+
+
         if (!isValid(d, m, y)) {
             throw runtime_error("Invalid date");
         }
