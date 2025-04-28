@@ -22,6 +22,7 @@ void printMonth(const int monthsPerRow, const int startMonth, const int year) {
     }
     cout << endl;
 }
+
 void printDayOfWeek(const int startMonth, const int monthsPerRow) {
     const string daysOfWeek = "Lu Ma Me Gi Ve Sa Do";
     for (int i = 0; i < monthsPerRow; i++) {
@@ -30,6 +31,7 @@ void printDayOfWeek(const int startMonth, const int monthsPerRow) {
     }
     cout << endl;
 }
+
 void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[],const int monthsPerRow,const int startMonth,const int year, const list<Task>& task) {
     for (int i = 0; i < monthsPerRow; i++) {   //        //stampa i mesi
         if (currentDay[i] == 1) {
@@ -40,7 +42,7 @@ void printDays(const int day[],const int startDay[], int prevMonthDay[], int cur
 
         while (true) {
             bool isHighlighted = false;          // Controlla se il giorno è un'attività
-            for (const auto& l : task){
+            for (const auto l : task){
                 if (currentDay[i] == l.getDate().getDay() && startMonth + i == l.getDate().getMonth() && year == l.getDate().getYear()) {
                     cout << RED << setw(3) << currentDay[i] << RESET;
                     isHighlighted = true;
@@ -68,7 +70,7 @@ void printDays(const int day[],const int startDay[], int prevMonthDay[], int cur
     cout << endl;
 }
 
-void printFourMonthly(const int startMonth, const int year, const int monthPerRow, const list<Task> &task) {
+void printFourMonthly(const int startMonth, const int year, const int monthPerRow, const ToDoList &list) {
 
     printMonth(monthPerRow, startMonth, year);
 
@@ -89,7 +91,7 @@ void printFourMonthly(const int startMonth, const int year, const int monthPerRo
     constexpr int maxWeeks = 6;
 
     for (int row = 0; row < maxWeeks; row++) {
-        printDays(day, startDay, prevMonthDay, currentDay, monthPerRow, startMonth, year, task);
+        printDays(day, startDay, prevMonthDay, currentDay, monthPerRow, startMonth, year, list.getUncompletedTasks());
     }
     cout << endl;
 }

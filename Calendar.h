@@ -7,7 +7,7 @@
 
 #include <list>
 #include "Task.h"
-#include "Data.h"
+#include "ToDoList.h"
 using namespace std;
 
 // Funzione per ottenere il giorno della settimana del primo giorno del mese
@@ -23,7 +23,7 @@ void printDayOfWeek(int startMonth, int monthsPerRow);
 void printDays(const int day[],const int startDay[], int prevMonthDay[],int currentDay[], int monthsPerRow, int startMonth, int year, const list<Task>& task);
 
 // Funzione per stampare il quadrimestre
-void printFourMonthly(int startMonth, int year,int monthPerRow, const list<Task> &task);
+void printFourMonthly(int startMonth, int year,int monthPerRow, const ToDoList &list);
 
 
 
