@@ -19,7 +19,7 @@ void Task::taskCompleted() {
 }
 
 Task Task::fromJson(const json &json) {
-    if (!json.contains("nome")) {                        //FIXME eccezione
+    if (!json.contains("nome")) {
         throw runtime_error("JSON non valido: campo nome mancante");
     }
 
@@ -43,16 +43,9 @@ Task Task::fromJson(const json &json) {
 
     Task t(name, dataScadenza, dataCompletamento, description, priority);
     return t;
-    /*if (json["data scadenza"] != "00/00/0000") {
-        const Data data = Data::fromString(json["data scadenza"]);
-        Task t(name,  data, dataCompletamento, description, priority);//FIXME eccezione
-
-    }
-    Task t(name, description, priority);
-    return t;*/
 }
 
-json Task::toJson() const{ // FIXME se non ha data e data di completamento usare un altro costruttore
+json Task::toJson() const{
     json obj;
     obj["nome"] = name;
     obj["description"] = description;
