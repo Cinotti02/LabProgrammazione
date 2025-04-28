@@ -137,3 +137,21 @@ TEST(ToDoListTest, RemoveTaskByName_Fail) {
     bool result = list.removeTaskByName("NonExistingTask");
     EXPECT_FALSE(result);
 }
+
+TEST(ToDoListTest, ClearTasks) {
+    ToDoList list;
+
+    // Aggiungiamo qualche task
+    list.addTask(Task("Task1"));
+    list.addTask(Task("Task2"));
+    list.addTask(Task("Task3"));
+
+    // Verifichiamo che i task siano stati aggiunti
+    ASSERT_EQ(list.getTasks().size(), 3);
+
+    // Chiamiamo clearTasks
+    list.clearTasks();
+
+    // Ora la lista deve essere vuota
+    EXPECT_TRUE(list.getTasks().empty());
+}
