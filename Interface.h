@@ -5,32 +5,33 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include <list>
-#include "Task.h"
 
-    static int menu();  //funzione per stampare il menu e restituire la scelta dell'utente
+#include "ToDoList.h"
+#include "Utility.h"
 
-    bool choice(int c);  //funzione per eseguire l'azione corrispondente alla scelta dell'utente
+int menu();  //funzione per stampare il menu e restituire la scelta dell'utente
 
-    void printCalendar(int year);  //funzione per stampare il calendario dell'anno corrente
+    bool choice(int c, ToDoList& list);  //funzione per eseguire l'azione corrispondente alla scelta dell'utente
 
-    void todayTasks();  //funzione per stampare le attività da svolgere oggi
+    void printCalendar(int year, ToDoList &list);  //funzione per stampare il calendario dell'anno corrente
 
-    void showIncompleteTasks();  //funzione per stampare le attività da svolgere
+    void todayTasks(ToDoList &list);  //funzione per stampare le attività da svolgere oggi
 
-    void searchByDate();  //funzione per cercare le attività da svolgere in una data specifica
+    void showUncompletedTask(ToDoList &list);  //funzione per stampare le attività da svolgere
 
-    void addTask();  //funzione per aggiungere una nuova attività
+    void searchByDate(const ToDoList &list);  //funzione per cercare le attività da svolgere in una data specifica
 
-    void setTaskCompleted();  //funzione per segnare un'attività come completata
+    //void addTask(ToDoList &list);  //funzione per aggiungere una nuova attività
 
-    void showCompletedTasks();  //funzione per stampare le attività completate
+    void setTaskCompleted(ToDoList &list);  //funzione per segnare un'attività come completata
 
-    void removeTask();  //funzione per rimuovere un'attività dalla lista
+    void showCompletedTasks(ToDoList &list);  //funzione per stampare le attività completate
+
+    void removeTask(ToDoList &list);  //funzione per rimuovere un'attività dalla lista
 
     static void reinsertName(string nome, bool &a);  //funzione per reinserire il nome dell'attività
 
-    Task createTasks();
+    void createTasks(ToDoList &list);
 
     bool choiceB();  //funzione per controllare la scelta dell'utente tra due opzioni
 
