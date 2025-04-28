@@ -5,7 +5,7 @@
 #include "Utility.h"
 
 
-string readFile(const string &nameFile) { //FIXME passaggio di parametri string o ToDoList list.getFilePath()??
+string readFile(const string &nameFile) {
     ifstream file(nameFile);
     if (!file) {
         throw runtime_error("Unable to open file " + nameFile);
@@ -22,7 +22,7 @@ string readFile(const string &nameFile) { //FIXME passaggio di parametri string 
     return content;
 }
 //bool al posto di void
-void writeFile(const string &nameFile, const string &content) { //FIXME passaggio di parametri string o ToDoList list.getFilePath()??
+void writeFile(const string &nameFile, const string &content) {
     ofstream file(nameFile, ios::out);
     if (!file) {
         throw runtime_error(SPACE RED "Unable to open file for writing" RESET);
