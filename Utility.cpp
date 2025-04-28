@@ -6,30 +6,23 @@
 
 
 string readFile(const string &nameFile) {
-    ifstream file(nameFile);
-    if (!file) {
+    ifstream file(nameFile, ios::in);
+    if (!file.is_open()) {
         throw runtime_error("Unable to open file " + nameFile);
     }
 
-    string content;
-    string line;
-
-    while (getline(file, line)) {
-        content += line + "\n";
-    }
-
-    file.close();
-    return content;
+    stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
 }
+
 //bool al posto di void
 void writeFile(const string &nameFile, const string &content) {
-    ofstream file(nameFile, ios::out);
+    ofstream file(nameFile, ios::out | ios::trunc);
     if (!file) {
         throw runtime_error(SPACE RED "Unable to open file for writing" RESET);
     }
-
     file << content;
-    file.close();
 }
 
 void loadTaskOnJFile(const ToDoList &todo) {
@@ -37,28 +30,20 @@ void loadTaskOnJFile(const ToDoList &todo) {
     auto array = json::array();
     auto arrayC = json::array();
 
-    for (auto &task : todo.getTasks()) {
-        if (task.getCompleted() == false)
-            array.push_back(task.toJson());
-        else
-            arrayC.push_back(task.toJson());
+    for (const auto &task : todo.getTasks()) {
+        (task.getCompleted() ? arrayC : array).push_back(task.toJson());
     }
     j["tasks to complete"] = array;
     j["completed tasks"] = arrayC;
 
-    try {
-        writeFile(todo.getFilePath(), j.dump(4));
-    }
-    catch (std::runtime_error &e) {
-        throw runtime_error(e.what());
-    }
+    writeFile(todo.getFilePath(), j.dump(4));
 
     cout << SPACE "       Tasks saved successfully!" <<endl;
 }
 
 void loadTaskFromFile(ToDoList &todo) {
-    ifstream file(todo.getFilePath());
-    if (!file) {
+    using namespace std::filesystem;
+    if (!exists(todo.getFilePath())) {
         // File non trovato? Lo creiamo automaticamente vuoto
         ofstream newFile(todo.getFilePath());
         newFile << R"({"tasks to complete": [], "completed tasks": []})";
@@ -73,18 +58,15 @@ void loadTaskFromFile(ToDoList &todo) {
     }
 
     try {
-        json j = json::parse(contentFile);
+        const json j = json::parse(contentFile);
 
-        todo.removeAllUncompletedTasks();
+        todo.clearTasks();
 
-        json tasks = j["tasks to complete"];
-        json completed = j["completed tasks"];
-
-        for (const auto& taskJson : tasks) {
+        for (const auto& taskJson : j["tasks to complete"]) {
             todo.createAndAddTask(taskJson["nome"], taskJson["description"], taskJson.contains("data scadenza") ? Data::fromString(taskJson["data scadenza"]) : Data(0,0,0,false), taskJson["priority"]);
         }
 
-        for (const auto& taskJson : completed) {
+        for (const auto& taskJson : j["completed tasks"]) {
             todo.createAndAddTask(taskJson["nome"], taskJson["description"], taskJson.contains("data scadenza") ? Data::fromString(taskJson["data scadenza"]) : Data(0,0,0,false), taskJson["priority"], true,Data::fromString(taskJson["dataCompletamento"]));
         }
     }
@@ -97,7 +79,8 @@ void loadTaskFromFile(ToDoList &todo) {
 
 void controlCin(int &choice) {
     while (true) {
-        cout << SPACEM "choice: " RESET ;cin >> choice;
+        cout << SPACEM "choice: " RESET;
+        cin >> choice;
         if (cin.fail()) {
             cinFile();
             continue;
@@ -110,17 +93,17 @@ void controlCinData(int &d, int &m, int &y) {
     while (true) {
         cout << SPACEM "- insert date " RESET << endl;
         cout << SPACE "day: "; cin >> d;
-        if (cin.fail() || cin.eof()) {
+        if (cin.fail()) {
             cinFile();
             continue;
         }
         cout << SPACE "month: "; cin >> m;
-        if (cin.fail() || cin.eof()) {
+        if (cin.fail()) {
             cinFile();
             continue;
         }
         cout << SPACE "year: "; cin >> y;
-        if (cin.fail() || cin.eof()) {
+        if (cin.fail()) {
             cinFile();
             continue;
         }
