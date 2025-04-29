@@ -63,11 +63,11 @@ void loadTaskFromFile(ToDoList &todo) {
         todo.clearTasks();
 
         for (const auto& taskJson : j["tasks to complete"]) {
-            todo.createAndAddTask(taskJson["nome"], taskJson["description"], taskJson.contains("data scadenza") ? Data::fromString(taskJson["data scadenza"]) : Data(0,0,0,false), taskJson["priority"]);
+            todo.createAndAddTask(taskJson["nome"], taskJson["description"], taskJson.contains("data scadenza") ? Data::fromString(taskJson["data scadenza"]) : Data(), taskJson["priority"]);
         }
 
         for (const auto& taskJson : j["completed tasks"]) {
-            todo.createAndAddTask(taskJson["nome"], taskJson["description"], taskJson.contains("data scadenza") ? Data::fromString(taskJson["data scadenza"]) : Data(0,0,0,false), taskJson["priority"], true,Data::fromString(taskJson["dataCompletamento"]));
+            todo.createAndAddTask(taskJson["nome"], taskJson["description"], taskJson.contains("data scadenza") ? Data::fromString(taskJson["data scadenza"]) : Data(), taskJson["priority"], true,Data::fromString(taskJson["dataCompletamento"]));
         }
     }
     catch (const std::exception& e) {

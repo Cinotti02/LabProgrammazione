@@ -20,7 +20,7 @@ void printMonth(int monthsPerRow,int startMonth, int year);
 void printDayOfWeek(int startMonth, int monthsPerRow);
 
 // Funzione per stampare la settimana dei quattro mesi
-void printDays(const int day[],const int startDay[], int prevMonthDay[],int currentDay[], int monthsPerRow, int startMonth, int year, const list<Task>& task);
+void printDays(const int day[],const int startDay[], int prevMonthDay[],int currentDay[], int monthsPerRow, int startMonth, int year,const vector<Task>& task);
 
 // Funzione per stampare il quadrimestre
 void printFourMonthly(int startMonth, int year,int monthPerRow, const ToDoList &list);

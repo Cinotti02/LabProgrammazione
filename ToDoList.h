@@ -24,13 +24,11 @@ public:
 
     void setFilePath(const string &path);
 
-    void createAndAddTask(const string& name, const string& description, const Data& date, bool important = false, bool completed = false, const Data& completionDate = Data(0, 0, 0, false));;
+    void createAndAddTask(const string& name, const string& description, const Data& date, bool important = false, bool completed = false, const Data& completionDate = Data());
 
     bool completeTaskByName(const string& name);
 
     bool removeTaskByName(const string& name);
-
-    list<Task> getTasksByDate(const Data& date) const;
 
     list<Task>& getTasks();
 
@@ -38,12 +36,13 @@ public:
 
     string getFilePath() const;
 
-    list<Task> getImportantTasks() const;
+    vector<Task> getImportantTasks() const;
 
-    list<Task> getCompletedTasks() const;
+    vector<Task> getCompletedTasks() const;
 
-    list<Task> getUncompletedTasks() const;
+    vector<Task> getUncompletedTasks() const;
 
+    vector<Task> getTasksByDate(const Data& date) const;
 
 private:
     string nameList;  // Nome della lista

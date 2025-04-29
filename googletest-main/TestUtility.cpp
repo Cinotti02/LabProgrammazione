@@ -93,13 +93,13 @@ TEST(UtilityTest, LoadTaskFromFile_Robust) {
     EXPECT_EQ(list.getCompletedTasks().size(), 1);
 
     // Verifica i dati del task incompleto
-    const Task& uncompleted = list.getUncompletedTasks().front();
+    auto uncompleted = list.getUncompletedTasks()[0];
     EXPECT_EQ(uncompleted.getName(), "IncompleteTask");
     EXPECT_TRUE(uncompleted.getImportant());
     EXPECT_EQ(uncompleted.getDate().toString(), "10/12/2025");
 
     // Verifica i dati del task completato
-    const Task& completed = list.getCompletedTasks().front();
+    auto completed = list.getCompletedTasks()[0];
     EXPECT_EQ(completed.getName(), "CompletedTask");
     EXPECT_FALSE(completed.getImportant());
     EXPECT_EQ(completed.getDate().toString(), "01/01/2025");

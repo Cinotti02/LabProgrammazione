@@ -32,7 +32,7 @@ void printDayOfWeek(const int startMonth, const int monthsPerRow) {
     cout << endl;
 }
 
-void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[],const int monthsPerRow,const int startMonth,const int year, const list<Task>& task) {
+void printDays(const int day[],const int startDay[], int prevMonthDay[], int currentDay[],const int monthsPerRow,const int startMonth,const int year, const vector<Task>& task) {
     for (int i = 0; i < monthsPerRow; i++) {   //        //stampa i mesi
         if (currentDay[i] == 1) {
             for (int j = startDay[i] - 1; j >= 0; j--) {                      // Stampa i giorni del mese precedente

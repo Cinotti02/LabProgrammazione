@@ -252,7 +252,7 @@ void createTasks(ToDoList &list) {
 
     cout << "Do you want to add a deadline date? (Y/N)" << endl;
     bool wantsDate = choiceB();
-    Data deadline(0, 0, 0, false);
+    Data deadline;
 
     if (wantsDate) {
         while (true) {

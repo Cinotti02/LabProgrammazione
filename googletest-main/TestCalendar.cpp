@@ -28,7 +28,7 @@ TEST(CalendarTest, PrintDaysTest) {
     int startDay[4] = {0, 3, 6, 2};
     int prevMonthDay[4] = {31, 31, 28, 31};
     int currentDay[4] = {1, 1, 1, 1};
-    std::list<Task> tasks;
+    std::vector<Task> tasks;
     tasks.emplace_back("Task1", Data(5, 1, 2025));
     EXPECT_NO_THROW(printDays(day, startDay, prevMonthDay, currentDay, 4, 1, 2025, tasks));
 }

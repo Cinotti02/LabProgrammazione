@@ -9,7 +9,7 @@
 #include "ToDoList.h"
 #include "Utility.h"
 
-int menu();  //funzione per stampare il menu e restituire la scelta dell'utente
+    int menu();  //funzione per stampare il menu e restituire la scelta dell'utente
 
     bool choice(int c, ToDoList& list);  //funzione per eseguire l'azione corrispondente alla scelta dell'utente
 

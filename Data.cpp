@@ -28,7 +28,11 @@ Data Data::getCurrentDate() {
     tm localTime{};
     localtime_s(&localTime, &nowTime);
 
-    return {localTime.tm_mday, localTime.tm_mon + 1, localTime.tm_year + 1900, false};
+    Data today;
+    today.day = localTime.tm_mday;
+    today.month = localTime.tm_mon + 1;
+    today.year = localTime.tm_year + 1900;
+    return today;
 }
 
 string Data::toString() const {
@@ -44,7 +48,7 @@ Data Data::fromString(const string &s) {
     char sep;
     stringstream ss(s);
     ss >> d >> sep >> m >> sep >> y;
-    return Data(d, m, y, false);
+    return {d, m, y};
 }
 
 int Data::daysInMonth(const int month, const int year) {

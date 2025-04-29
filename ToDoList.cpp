@@ -77,8 +77,8 @@ bool ToDoList::removeTaskByName(const string& name) {
     return false;
 }
 
-list<Task> ToDoList::getTasksByDate(const Data& date) const {
-    list<Task> result;
+vector<Task> ToDoList::getTasksByDate(const Data& date) const {
+    vector<Task> result;
     for (const auto& task : tasks) {
         if (task.getDate() == date && !task.getCompleted()) {
             result.push_back(task);
@@ -99,8 +99,8 @@ string ToDoList::getFilePath() const {
     return filePath;
 }
 
-list<Task> ToDoList::getImportantTasks() const {
-    std::list<Task> importantTasks;
+vector<Task> ToDoList::getImportantTasks() const {
+    vector<Task> importantTasks;
 
     for (const auto& task : tasks) {
         if (task.getImportant() == 1) {
@@ -110,8 +110,8 @@ list<Task> ToDoList::getImportantTasks() const {
     return importantTasks;
 }
 
-list<Task> ToDoList::getCompletedTasks() const {
-    list<Task> completedTasks;
+vector<Task> ToDoList::getCompletedTasks() const {
+    vector<Task> completedTasks;
     for (const auto& task : tasks) {
         if (task.getCompleted() == 1) {
             completedTasks.push_back(task);
@@ -120,8 +120,8 @@ list<Task> ToDoList::getCompletedTasks() const {
     return completedTasks;
 }
 
-list<Task> ToDoList::getUncompletedTasks() const {
-    list<Task> uncompletedTasks;
+vector<Task> ToDoList::getUncompletedTasks() const {
+    vector<Task> uncompletedTasks;
     for (const auto& task : tasks) {
         if (task.getCompleted() == 0) {
             uncompletedTasks.push_back(task);

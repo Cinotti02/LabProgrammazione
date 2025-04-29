@@ -12,17 +12,14 @@ using namespace std;
 
 class Data {
 public:
-    Data(const int d, const int m, const int y, const bool validata=true): day(d), month(m), year(y) {
-        if (!validata) {
-            return;
-        }
-
+    Data( int d, int m, int y): day(d), month(m), year(y) {
 
         if (!isValid(d, m, y)) {
             throw runtime_error("Invalid date");
         }
     };
-    Data() = default;
+
+    Data():day(0), month(0), year(0){}
 
     void setCurrentDate();  // Imposta la data attuale
 

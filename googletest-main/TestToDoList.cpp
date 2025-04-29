@@ -40,7 +40,7 @@ TEST(ToDoListTest, GetImportantTasks) {
     Task importantTask("Task1", "desc", true);
     list.addTask(importantTask);
     EXPECT_EQ(list.getImportantTasks().size(), 1);
-    EXPECT_TRUE(list.getImportantTasks().front().getImportant());
+    EXPECT_TRUE(list.getImportantTasks()[0].getImportant());
 }
 
 TEST(ToDoListTest, GetCompletedAndUncompletedTasks) {
@@ -71,10 +71,10 @@ TEST(ToDoListTest, GetTasksByDate) {
     auto tasksOnDate2 = list.getTasksByDate(date2);
 
     EXPECT_EQ(tasksOnDate1.size(), 1);
-    EXPECT_EQ(tasksOnDate1.front().getName(), "Task1");
+    EXPECT_EQ(tasksOnDate1[0].getName(), "Task1");
 
     EXPECT_EQ(tasksOnDate2.size(), 1);
-    EXPECT_EQ(tasksOnDate2.front().getName(), "Task2");
+    EXPECT_EQ(tasksOnDate2[0].getName(), "Task2");
 }
 
 TEST(ToDoListTest, CreateAndAddTask) {

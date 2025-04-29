@@ -31,14 +31,14 @@ Task Task::fromJson(const json &json) {
     if (json.contains("dataCompletamento")) {
         dataCompletamento = Data::fromString(json["dataCompletamento"]);
     } else {
-        dataCompletamento = Data(0, 0, 0, false);
+        dataCompletamento = Data();
     }
 
     Data dataScadenza;
     if (json.contains("data scadenza")) {
         dataScadenza = Data::fromString(json["data scadenza"]);
     } else {
-        dataScadenza = Data(0, 0, 0, false);
+        dataScadenza = Data();
     }
 
     Task t(name, dataScadenza, dataCompletamento, description, priority);
