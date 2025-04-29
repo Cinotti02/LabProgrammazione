@@ -87,11 +87,6 @@ list<Task> ToDoList::getTasksByDate(const Data& date) const {
     return result;
 }
 
-
-
-
-
-
 list<Task>& ToDoList::getTasks(){
     return tasks;
 }
